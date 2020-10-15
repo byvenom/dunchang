@@ -33,7 +33,7 @@ function Comment(props) {
     return (
         <div>
             <br />
-            <p> Replies</p>
+            <p>댓글 {props.commentLists.length}개</p>
             <hr /> 
 
 
@@ -50,18 +50,18 @@ function Comment(props) {
 
             {/* Root Comment Form */}
             <br />
-            {!user &&
+            {user &&
             <form style={{ display:'flex'}} onSubmit={onSubmit}>
                 <textarea
                     style={{ width: '100%' , borderRadius:'5px' , resize:'none'}}
                     onChange={handleClick}
                     value={commentValue}
-                    placeholder="Comment write"
+                    placeholder=" 댓글을 작성해 주세요."
 
                 
                 />
                 <br />
-                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>Submit</button>
+                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>작성</button>
 
             </form>
             }

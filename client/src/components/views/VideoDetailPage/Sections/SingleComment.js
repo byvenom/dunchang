@@ -14,7 +14,7 @@ function SingleComment(props) {
     }
     const actions = [
         <LikeDislikes userId={localStorage.getItem('userId')} commentId={props.comment._id}/>
-        ,<span onClick={onclickReplyOpen} key="comment-basic-reply-to"> Reply to</span>
+        ,<span onClick={onclickReplyOpen} key="comment-basic-reply-to"> 답글</span>
     ]
     const onHandleChange = (event) =>{
         setCommentValue(event.currentTarget.value)
@@ -42,11 +42,12 @@ function SingleComment(props) {
         })
     }
     return (
+       
         <div>
             <Comment
                 actions={actions}
-                author={props.comment.writer.name}
-                avatar={<Avatar src={props.comment.writer.image} alt />}
+                author={props.comment.writer? props.comment.writer.name:""}
+                avatar={<Avatar src={props.comment.writer?props.comment.writer.image:""} alt />}
                 content={ <p> {props.comment.content}</p>}
             />
             {OpenReply &&
@@ -55,7 +56,7 @@ function SingleComment(props) {
                     style={{ width: '100%' , borderRadius:'5px' , resize:'none'}}
                     onChange={onHandleChange}
                     value={CommentValue}
-                    placeholder="Comment write"
+                    placeholder=" 답글을 작성해 주세요."
 
                 
                 />

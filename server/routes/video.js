@@ -29,6 +29,18 @@ var upload = multer({ storage: storage}).single("file");
 //=================================
 //             Video
 //=================================
+router.post('/hit', (req,res) => {
+
+    Video.findOne({"_id": req.body.videoId})
+        .populate('writer')
+        .exec((err, hits) => {
+            if(err) return res.json({success:false,err})
+            hits.views++;
+            hits.save();
+            return res.json({success: true,hits:hits.views})
+        })
+
+});
 
 router.post('/uploadfiles', (req,res) => {
     

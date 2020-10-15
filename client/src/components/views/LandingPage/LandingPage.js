@@ -1,29 +1,28 @@
 import React,{useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa"
 import {Card, Icon, Avatar, Col, Typography,Row} from 'antd';
-import Axios from 'axios';
+import axios from 'axios';
 import moment from 'moment';
-
+import 'moment/locale/ko'
 const {Title} = Typography;
 const { Meta} = Card;
 function LandingPage() {
     
 
-    const [Video, setVideo] = useState([])
-    useEffect(() => {
-        Axios.get('/api/video/getVideos')
-        .then(response => {
-            if(response.data.success){
-                console.log(response.data)
-                setVideo(response.data.videos)
-            }else{
-                alert('비디오 가져오기를 실패 했습니다.')
-            }
+    const [Videos, setVideos] = useState([])
 
-        })
-        
+    useEffect(() => {
+        axios.get('/api/video/getVideos')
+            .then(response => {
+                if (response.data.success) {
+                    console.log(response.data.videos)
+                    setVideos(response.data.videos)
+                } else {
+                    alert('Failed to get Videos')
+                }
+            })
     }, [])
-    const renderCards = Video.map((video,index) =>{
+    const renderCards = Videos.map((video,index) =>{
             var minutes = Math.floor(video.duration / 60);
             var seconds = Math.floor((video.duration - (minutes * 60)));
         return  <Col lg={6} md={8} xs={24}>
@@ -45,7 +44,7 @@ function LandingPage() {
             description=""
         />
         <span>{video.writer.name}</span><br />
-        <span style={{ marginLeft: '3rem'}}>{video.views} views</span> - <span>{moment(video.createAt).format("MMM Do YY")}</span>
+        <span style={{ marginLeft: '3rem'}}>조회수 {video.views}회 </span> · <span>{moment(video.createdAt).fromNow()}</span>
     </Col>
     })
     return (

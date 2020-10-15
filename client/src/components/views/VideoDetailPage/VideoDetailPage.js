@@ -5,17 +5,29 @@ import SideVideo from './Sections/SideVideo';
 import Subscribe from './Sections/Subscribe';
 import Comment from './Sections/Comment';
 import LikeDislikes from './Sections/LikeDislikes';
+import { useSelector} from 'react-redux'
 import "./vd.css";
+
 
 
 
 function VideoDetailPage(props) {
     const videoId = props.match.params.videoId;
+    const user = useSelector(state =>state.user);
     const variable = { videoId:videoId }
-
+   
     const [VideoDetail, setVideoDetail] = useState([])
     const [Comments, setComments] = useState([])
+    const [Hits, setHits] = useState(0)
     useEffect(() => {
+        Axios.post('/api/video/hit',variable)
+        .then(response => {
+            if(response.data.success){
+                setHits(response.data.hits)
+            }else{
+                alert('조회수 를 올리지 못하였습니다.')
+            }
+        })
         Axios.post('/api/video/getVideoDetail', variable)
         .then(response => {
             if(response.data.success){
@@ -46,6 +58,7 @@ function VideoDetailPage(props) {
                 <Col lg={18} xs={24}>
                     <div style={{ width: '100%' , padding:'3rem 4rem'}}>
                         <video className="video" style={{width: '100%' , height:'730px' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls autoPlay="autoplay"/>
+                        <p style={{fontSize:'28px',color:'000000A6', paddingTop:'1rem'}}>{VideoDetail.title}</p>
                         <List.Item
                             actions={[ <LikeDislikes video userId={localStorage.getItem('userId')} videoId={videoId}/>, subscribeButton ]}
                         >
@@ -54,7 +67,17 @@ function VideoDetailPage(props) {
                                 title={VideoDetail.writer.name}
                                 description={VideoDetail.description}
                                 />
+                            
                         </List.Item>
+                        <List.Item>
+                        <div style={{ paddingLeft:'76rem'}}>
+                        <List.Item.Meta
+                                title={"조회수 "+Hits+"회"}
+                                
+                            />
+                        </div>
+                        </List.Item>
+                        
                         {/* Comments */}
                         <Comment refreshFunction={refreshFunction} commentLists={Comments} postId={videoId}/>
     

@@ -25,8 +25,8 @@ function LandingPage() {
     const renderCards = Videos.map((video,index) =>{
             var minutes = Math.floor(video.duration / 60);
             var seconds = Math.floor((video.duration - (minutes * 60)));
-        return  <Col lg={6} md={8} xs={24}>
-        <a href={` /video/${video._id}`}>
+        return  <React.Fragment key={index}><Col lg={6} md={8} xs={24}>
+        <a href={` /video/detail/${video._id}`}>
             <div style={{ position: 'relative'}}>
                 
                 <img style={{ width: '100%'}} src={`http://localhost:5000/${video.thumbnail}`} alt="" />
@@ -46,6 +46,7 @@ function LandingPage() {
         <span>{video.writer.name}</span><br />
         <span style={{ marginLeft: '3rem'}}>조회수 {video.views}회 </span> · <span>{moment(video.createdAt).fromNow()}</span>
     </Col>
+    </React.Fragment>
     })
     return (
        <div style={{ width: '85%', margin: '3rem auto'}}>

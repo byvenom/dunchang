@@ -40,7 +40,7 @@ function Comment(props) {
             {/* Comment Lists */}
             {props.commentLists && props.commentLists.map((comment,index) => (
                     (!comment.responseTo &&
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={videoId}/>
                             <ReplyComment refreshFunction={props.refreshFunction} parentCommentId={comment._id} postId={videoId} commentLists={props.commentLists}/> 
                         </React.Fragment>// 리액트 플래그먼트로 감싸주지않으면 에러

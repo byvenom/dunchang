@@ -47,7 +47,7 @@ function SingleComment(props) {
             <Comment
                 actions={actions}
                 author={props.comment.writer? props.comment.writer.name:""}
-                avatar={<Avatar src={props.comment.writer?props.comment.writer.image:""} alt />}
+                avatar={<Avatar src={props.comment.writer?props.comment.writer.image:""} alt="" />}
                 content={ <p> {props.comment.content}</p>}
             />
             {OpenReply &&

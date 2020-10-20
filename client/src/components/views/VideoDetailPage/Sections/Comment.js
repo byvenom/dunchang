@@ -4,6 +4,7 @@ import { useSelector} from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
 function Comment(props) {
+    console.log(props.commentLists)
     const videoId = props.postId;
     const user = useSelector(state =>state.user);
     const [commentValue, setcommentValue] = useState("")
@@ -13,14 +14,16 @@ function Comment(props) {
     const onSubmit = (event) => {
         // 새로고침 안되게함
         event.preventDefault();
-
+        
         const variables = {
             content: commentValue,
             writer: user.userData._id, //리덕스에서 정보 가져오기.
             postId: videoId
         }
+        
         Axios.post('/api/comment/saveComment',variables)
         .then(response => {
+           
             if(response.data.success){
                 
                 props.refreshFunction(response.data.result)
@@ -33,7 +36,7 @@ function Comment(props) {
     return (
         <div>
             <br />
-            <p>댓글 {props.commentLists.length}개</p>
+            <p>댓글 {props.commentLists?props.commentLists.length:"0"}개</p>
             <hr /> 
 
 

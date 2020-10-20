@@ -10,15 +10,16 @@ const {TextArea} = Input;
 const { Title} = Typography;
 
 const PrivateOptions = [
-    {value :0, label: "Private"},
-    {value :1, label: "Public"}
+    {value :0, label: "비공개"},
+    {value :1, label: "공개"}
 ]
 
 const CategoryOptions = [
-    {value :0, label: "Film & Animaion"},
-    {value :1, label: "Autos & Vehicles"},
-    {value :2, label: "Music"},
-    {value :3, label: "Pets & Animals"}
+    {value :0, label: "영화 및 애니메이션"},
+    {value :1, label: "자동차 및 차량"},
+    {value :2, label: "음악"},
+    {value :3, label: "애완동물 및 동물"},
+    {value :4, label: "자유"},
 ]
 
 function VideoUploadPage(props) {
@@ -26,7 +27,7 @@ function VideoUploadPage(props) {
     const [VideoTitle, setVideoTitle] = useState("")
     const [Description, setDescription] = useState("")
     const [Private, setPrivate] = useState(0)
-    const [Category, setCategory] = useState("Film & Animation")
+    const [Category, setCategory] = useState("영화 및 애니메이션")
     const [FilePath, setFilePath] = useState("")
     const [Duration, setDuration] = useState("")
     const [ThumbnailPath, setThumbnailPath] = useState("")
@@ -107,7 +108,7 @@ function VideoUploadPage(props) {
     return (
         <div style={{ maxWidth:'700px', margin:'2rem auto'}}>
             <div style={{ textAlign:'center', marginBottom:'2rem'}}>
-                <Title level={2}>Upload Video</Title>
+                <Title level={2}>영상 업로드</Title>
             </div> 
                 <Form onSubmit={onSubmit}>
                     <div style={{ display:'flex' , justifyContent:'space-between'}}>
@@ -137,14 +138,14 @@ function VideoUploadPage(props) {
                     </div>
             <br />
             <br />
-            <label>Title</label>
+            <label>제목</label>
             <Input
                 onChange={onTitleChange}
                 value={VideoTitle}
             />
             <br />
             <br />
-            <label>Description</label>
+            <label>내용</label>
             <TextArea
                 onChange={onDescriptionChange}
                 value={Description}
@@ -168,7 +169,7 @@ function VideoUploadPage(props) {
             <br />
             <br />
             <Button type="primary" size="large" onClick={onSubmit}>
-                Submit
+                올리기
             </Button>
                 </Form>
             

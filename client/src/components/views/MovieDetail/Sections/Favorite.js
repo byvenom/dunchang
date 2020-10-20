@@ -7,7 +7,7 @@ function Favorite(props) {
 
     const movieId = props.movieId
     const userFrom = props.userFrom
-    const movieTitle = props.movieInfo.movieTitle
+    const movieTitle = props.movieInfo.original_title
     const moviePost = props.movieInfo.backdrop_path
     const movieRunTime = props.movieInfo.runtime
     const [FavoriteNumber, setFavoriteNumber] = useState(0)
@@ -71,7 +71,7 @@ function Favorite(props) {
     return (
         
         <div>
-            <button onClick={FavoriteClick}>{Favorited?"Not Favorite" : "Add to Favorite"} {FavoriteNumber}</button>
+            <button onClick={FavoriteClick}>{Favorited?"제거" : "담기"} {FavoriteNumber}</button>
         </div>
     )
 }

@@ -23,13 +23,22 @@ router.post('/saveComment', (req,res) => {
 
     });
     router.post('/getComments', (req,res) => {
-    
+        if(req.body.videoId){
         Comment.find({ "postId" : req.body.videoId})
         .populate('writer')
         .exec( (err, comments) => {
             if(err) return res.status(400).send(err)
             res.status(200).json({success: true, comments})
         })
+        }
+        else{
+            Comment.find({ "postId" : req.body.movieId})
+        .populate('writer')
+        .exec( (err, comments) => {
+            if(err) return res.status(400).send(err)
+            res.status(200).json({success: true, comments})
+        })
+        }
 
     });
 

@@ -60,8 +60,8 @@ function SingleComment(props) {
 
                 
                 />
-                <br />
-                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>Submit</button>
+                <br /><br />
+                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>작성</button>
 
             </form>
             }

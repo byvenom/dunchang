@@ -43,7 +43,7 @@ function MoviePage() {
             }
             <div style={{ width: '85%', margin: '1rem auto'}}>
 
-                <h2>Movies by latest</h2>
+                <h2>최신 영화</h2>
                 <hr />
 
                 {/* Movie Grid Cards */}
@@ -67,7 +67,7 @@ function MoviePage() {
 
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button onClick={loadMoreItems}> Load More</button>
+                <button onClick={loadMoreItems}> 더보기</button>
             </div>
             
         </div>

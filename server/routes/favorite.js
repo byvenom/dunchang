@@ -63,6 +63,35 @@ router.post('/removefavorite', (req,res) => {
     
 
 })
+router.post('/deletefavorite', (req,res) => {
+
+    //내가 이 영화를 Favorite 리스트에 넣었는지 정보를 DB에서 가져오기
+
+    Favorite.findOneAndDelete({"movieId": req.body.movieId, "userFrom": req.body.userFrom})
+    .exec((err, info) => {
+        if(err) return res.status(400).send(err)
+        res.status(200).json({ success: true, info})
+    })
+
+   
+    
+
+})
+
+router.post('/getFavoriteMovie', (req,res) => {
+
+    //내가 이 영화를 Favorite 리스트에 넣었는지 정보를 DB에서 가져오기
+
+    Favorite.find({'userFrom':req.body.userFrom})
+    .exec((err,favorites) =>{
+        if(err) return res.status(400).send(err)
+        return res.status(200).json({success:true, favorites})
+    })
+
+   
+    
+
+})
 
 
 

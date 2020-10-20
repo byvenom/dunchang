@@ -1,6 +1,8 @@
 import React from 'react'
 import {Icon} from 'antd';
 
+import './all.css'
+
 function Footer() {
     return (
         <div style={{

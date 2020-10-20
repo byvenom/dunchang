@@ -39,7 +39,9 @@ function MoviePage() {
             <MainImage 
             image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`}
             title={MainMovieImage.original_title}
-            text={MainMovieImage.overview}/>
+            text={MainMovieImage.overview}
+            fleg="1"/>
+            
             }
             <div style={{ width: '85%', margin: '1rem auto'}}>
 

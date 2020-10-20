@@ -5,11 +5,11 @@ import MainImage from '../Commons/MainImage'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../Commons/GridCards'
 import Favorite from './Sections/Favorite'
-import {List, Avatar, Row, Col, Button} from 'antd'
+import { Row} from 'antd'
 import Axios from 'axios'
 import Comments from '../VideoDetailPage/Sections/Comment'
 import LikeDislikes from '../VideoDetailPage/Sections/LikeDislikes';
-import { useSelector } from 'react-redux'
+
 
 function MovieDetail(props) {
 
@@ -17,7 +17,7 @@ function MovieDetail(props) {
     const movieVariable = {
         movieId: movieId
     }
-    const user = useSelector(state =>state.user);
+    
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)

@@ -41,7 +41,7 @@ function MovieDetail(props) {
 
         Axios.post('/api/comment/getComments', movieVariable)
             .then(response => {
-                console.log(response)
+               
                 if (response.data.success) {
                     
                     setCommentLists(response.data.comments)

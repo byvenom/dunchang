@@ -6,6 +6,7 @@ import Subscribe from './Sections/Subscribe';
 import Comment from './Sections/Comment';
 import LikeDislikes from './Sections/LikeDislikes';
 import "./vd.css";
+import VideoPlayer from 'react-video-js-player';
 
 
 
@@ -56,7 +57,7 @@ function VideoDetailPage(props) {
             <Row gutter={[16,16]}>
                 <Col lg={18} xs={24}>
                     <div style={{ width: '100%' , padding:'3rem 4rem'}}>
-                        <video className="video" style={{width: '100%' , height:'730px' }} src={`http://localhost:5000/${VideoDetail.filePath}`} controls autoPlay="autoplay"/>
+                        <VideoPlayer width="1280" height="720" src={`http://localhost:5000/${VideoDetail.filePath}`}  autoplay/>
                         <p style={{fontSize:'28px',color:'000000A6', paddingTop:'1rem'}}>{VideoDetail.title}</p>
                         <List.Item
                             actions={[ <LikeDislikes video userId={localStorage.getItem('userId')} videoId={videoId}/>, subscribeButton ]}

@@ -4,7 +4,7 @@ import { useSelector} from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
 function Comment(props) {
-    console.log(props.commentLists)
+    
     const videoId = props.postId;
     const user = useSelector(state =>state.user);
     const [commentValue, setcommentValue] = useState("")

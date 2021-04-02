@@ -13,6 +13,11 @@ import SubscriptionPage from './views/SubscriptionPage/SubscriptionPage';
 import MoviePage from './views/MoviePage/MoviePage'
 import MovieDetail from './views/MovieDetail/MovieDetail'
 import FavoritePage from './views/FavoritePage/FavoritePage'
+import ChartPage from './views/ChartPage/ChartPage'
+import ChartDetailPage from './views/ChartDetailPage/ChartDetailPage'
+import UploadChartPage from './views/UploadChartPage/UploadChartPage'
+import DFPage from './views/DFPage/DFPage'
+import DFDetailPage  from './views/DFDetailPage/DFDetailPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -34,7 +39,12 @@ function App() {
           <Route exact path="/movie" component={Auth(MoviePage, null)} />
           <Route exact path="/movie/detail/:movieId" component={Auth(MovieDetail, null)} />
           <Route exact path="/movie/favorite" component={Auth(FavoritePage, true)} />
-
+          <Route exact path="/chart" component={Auth(ChartPage, null)} />
+          <Route exact path="/chart/upload" component={Auth(UploadChartPage, null)} />
+          <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
+          {/* DF 클론 */}
+          <Route exact path="/df" component={Auth(DFPage, null)} />
+          <Route exact path="/df/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
         </Switch>
       </div>
       <Footer />

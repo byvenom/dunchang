@@ -2,15 +2,23 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy":{
+    "/df/": {
+      "target": "https://api.neople.co.kr"
+    }
+  },
   "dependencies": {
     "antd": "^3.24.1",
     "axios": "^0.19.2",
+    "chart.js": "^2.9.4",
+    "cheerio": "^1.0.0-rc.5",
     "core-js": "^3.6.4",
     "formik": "^1.5.8",
     "gh-pages": "^3.1.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.6",
+    "react-chartjs-2": "^2.11.1",
     "react-dom": "^16.8.6",
     "react-dropzone": "^11.2.0",
     "react-icons": "^3.7.0",
@@ -18,6 +26,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.4.1",
+    "react-video-js-player": "^1.1.1",
     "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
@@ -49,5 +58,4 @@
   "devDependencies": {
     "http-proxy-middleware": "^1.0.3"
   }
-  
 }

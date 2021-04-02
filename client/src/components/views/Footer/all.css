@@ -1,3 +1,7 @@
 Button {
     cursor: pointer;
 }
+
+tr.space {
+    border-bottom: 10px solid #fff;
+  }

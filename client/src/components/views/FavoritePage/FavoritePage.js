@@ -56,7 +56,7 @@ function FavoritePage() {
         </tr>
     })
     return (
-        <div style={{ width: '85%', margin: '3rem auto' }}>
+        <div className="fa" style={{ width: '85%', margin: '3rem auto' }}>
             <h2>담긴 영화</h2>
             <hr />
 

@@ -34,13 +34,13 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
           <Route exact path="/video/detail/:videoId" component={Auth(VideoDetailPage, null)} />
-          <Route exact path="/video/subscription" component={Auth(SubscriptionPage, null)} />
+          <Route exact path="/video/subscription" component={Auth(SubscriptionPage, true)} />
           {/* 유튜브 클론 */}
           <Route exact path="/movie" component={Auth(MoviePage, null)} />
           <Route exact path="/movie/detail/:movieId" component={Auth(MovieDetail, null)} />
           <Route exact path="/movie/favorite" component={Auth(FavoritePage, true)} />
           <Route exact path="/chart" component={Auth(ChartPage, null)} />
-          <Route exact path="/chart/upload" component={Auth(UploadChartPage, null)} />
+          <Route exact path="/chart/upload" component={Auth(UploadChartPage, true)} />
           <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
           {/* DF 클론 */}
           <Route exact path="/dunfa" component={Auth(DFPage, null)} />

@@ -23,7 +23,12 @@ function DFPage() {
         setName(e.currentTarget.value)
     }
     const fetchMovies = (endpoint) => {
-        fetch(endpoint)
+        fetch(endpoint,{
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept' : 'application/json'
+			}
+        })
         .then(response => response.json())
         .then(response => {
             setrows(response.rows)
@@ -31,10 +36,15 @@ function DFPage() {
     }
 
     const loadMoreItems = () => {
+		if(Name === null || Name.length === 1 || Name ===""){
+            return alert('값을 확인해주세요')
+        }
+		else{
         const endpoint = `/df/servers/${Server}/characters?characterName=${Name}&apikey=${DF_KEY}&wordType=full&limit=200`;
         fetchMovies(endpoint)
         setStatus("")
         setSearchName(Name)
+		}
     }
     const onKeyPress = (e) => {
         if(e.key == 'Enter'){

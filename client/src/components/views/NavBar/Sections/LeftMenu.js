@@ -35,6 +35,7 @@ function LeftMenu(props) {
       <a href="/chart/upload">차트업로드</a>
     </Menu.Item>
     </SubMenu>
+    <SubMenu title={<span><a href="/dunfa" style={{textDecoration:'inherit' , color:'inherit'}}>DUNCHANG</a></span>}></SubMenu>
   </Menu>
   )
 }

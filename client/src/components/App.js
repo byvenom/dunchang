@@ -43,8 +43,8 @@ function App() {
           <Route exact path="/chart/upload" component={Auth(UploadChartPage, null)} />
           <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
           {/* DF 클론 */}
-          <Route exact path="/df" component={Auth(DFPage, null)} />
-          <Route exact path="/df/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
+          <Route exact path="/dunfa" component={Auth(DFPage, null)} />
+          <Route exact path="/dunfa/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
         </Switch>
       </div>
       <Footer />

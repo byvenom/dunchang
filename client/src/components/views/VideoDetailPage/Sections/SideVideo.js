@@ -2,6 +2,7 @@ import React,{ useEffect, useState } from 'react'
 import Axios from 'axios'
 import moment from 'moment';
 import 'moment/locale/ko'
+import os from 'os'
 function SideVideo() {
 
     const [sideVideos, setsideVideos] = useState([])
@@ -27,7 +28,7 @@ function SideVideo() {
             <div style={{ width: '40%' , marginRight: '1rem'}}>
                 <a href={` /video/detail/${video._id}`}>
                 <div style={{ position: 'relative'}}>
-                    <img style={{width:'100%', height:'100%'}} src={`http://localhost:5000/${video.thumbnail }`} alt="thumbnail" />
+                    <img style={{width:'100%', height:'100%'}} src={`http://${os.hostname()}:5000/${video.thumbnail }`} alt="thumbnail" />
                     <div className="duration">
                      <span>{minutes} : {seconds}</span>
                     </div>

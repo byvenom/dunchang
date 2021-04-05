@@ -33,6 +33,6 @@ export const GradeOptions =[
     {value:"에픽",label:"#FFB400"},
     {value:"크로니클",label:"#FF6666"},
     {value:"레전더리",label:"#FF7800"},
-    {value:"신화",label:"#cc70db"}
+    {value:"신화",label:""}
 ];
 

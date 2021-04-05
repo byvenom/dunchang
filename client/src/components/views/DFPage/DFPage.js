@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Typography, Button, Form,  Input ,Card, Avatar, Col,Row} from 'antd'
-import {DF_KEY,ServerOptions} from '../../Config'
+import {DF_KEY,DF_URL,ServerOptions} from '../../Config'
 
 
 const { Title } = Typography;
@@ -49,7 +49,7 @@ function DFPage() {
         var serverIds = row.serverId;
        
         return <React.Fragment key={index}><Col lg={6} md={8} xs={24}>
-                <a href={`/df/detail/${serverIds}/${characterIds}`}>
+                <a href={`/dunfa/detail/${serverIds}/${characterIds}`}>
                 <div style={{ position: 'relative'}}>
                 <img style={{width: '100%'  }} src={`https://img-api.neople.co.kr/df/servers/${serverIds}/characters/${characterIds}?zoom=1`} alt=""  />
                 </div>
@@ -66,7 +66,7 @@ function DFPage() {
     return (
         <div style={{ maxWidth:'1200px', margin:'2rem auto'}}>
             <div style={{ textAlign:'center', marginBottom:'2rem'}}>
-                <Title level={2}><a href="/df">DUNCHANG</a></Title>
+                <Title level={2}><a href="/dunfa">DUNCHANG</a></Title>
             </div> 
                 <Form>
 

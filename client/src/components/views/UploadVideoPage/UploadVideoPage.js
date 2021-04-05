@@ -3,7 +3,7 @@ import { Typography, Button, Form, message, Input, Icon} from 'antd'
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 import {useSelector} from 'react-redux';
-
+import os from 'os';
 
 
 const {TextArea} = Input;
@@ -132,7 +132,7 @@ function VideoUploadPage(props) {
                     
                         {ThumbnailPath &&
                             <div>
-                                <img src={`http://localhost:5000/${ThumbnailPath}`} alt="thumbnail" />
+                                <img src={`http://${os.hostname()}:5000/${ThumbnailPath}`} alt="thumbnail" />
                             </div>
                         }
                     </div>

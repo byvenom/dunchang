@@ -3,10 +3,14 @@ import {Typography, Button, Form,  Input ,Card, Avatar, Col,Row , Descriptions ,
 import {DF_KEY,ServerOptions,GradeOptions} from '../../Config'
 import './DF.css'
 import moment from 'moment';
+import os from 'os';
+
 const { TextArea } = Input;
 const { Title } = Typography;
 const {TabPane} = Tabs;
+
 function DFDetailPage(props) {
+    
     const nowTime = moment().format('YYYY-MM-DD HH:mm');
     const characterId = props.match.params.characterId;
     const serverId = props.match.params.serverId;
@@ -21,7 +25,7 @@ function DFDetailPage(props) {
     const [EndNumber, setEndNumber] = useState(0)
     const [StartNumber, setStartNumber] = useState(30)
     useEffect(() => {
-        console.log()
+        console.log(os.hostname())
         setStartDate(moment(nowTime).subtract(StartNumber,'d').format('YYYY-MM-DD HH:mm'))
         setEndDate(moment(nowTime).subtract(EndNumber,'d').format('YYYY-MM-DD HH:mm'))
         const endpoint = `/df/servers/${serverId}/characters/${characterId}/timeline?limit=10&startDate=${StartDate}&endDate=${EndDate}&code=402,403,404,405,406,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520&apikey=${DF_KEY}`
@@ -79,7 +83,7 @@ function DFDetailPage(props) {
     return (
         <div>
         <div style={{ textAlign:'center', marginTop:'2rem'}}>
-                <Title level={2} ><a href="/df">DUNCHANG</a></Title>
+                <Title level={2} ><a href="/dunfa">DUNCHANG</a></Title>
         </div> 
         <div align="center"style={{ position: 'relative'}}>
                 <img style={{width: '300px'  }} src={`https://img-api.neople.co.kr/df/servers/${serverId}/characters/${characterId}?zoom=3`} alt=""  /><br/>

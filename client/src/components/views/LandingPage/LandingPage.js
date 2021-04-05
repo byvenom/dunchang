@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-
+import os from 'os';
 import {Card, Avatar, Col, Typography,Row} from 'antd';
 import axios from 'axios';
 import moment from 'moment';
@@ -29,7 +29,7 @@ function LandingPage() {
         <a href={` /video/detail/${video._id}`}>
             <div style={{ position: 'relative'}}>
                 
-                <img style={{ width: '100%'}} src={`http://localhost:5000/${video.thumbnail}`} alt="" />
+                <img style={{ width: '100%'}} src={`http://${os.hostname()}:5000/${video.thumbnail}`} alt="" />
                  <div className="duration">
                      <span>{minutes} : {seconds}</span>
                  </div>

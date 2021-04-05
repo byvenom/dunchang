@@ -26,7 +26,7 @@ export const ServerOptions =[
     {value:"siroco",label:"시로코"}
 ];
 export const GradeOptions =[
-    {value:"커먼",label:"#FFFFFF"},
+    {value:"커먼",label:"#d1d1d1"},
     {value:"언커먼",label:"#68D5ED"},
     {value:"레어",label:"#B36BFF"},
     {value:"유니크",label:"#FF00FF"},

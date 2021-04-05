@@ -14,26 +14,42 @@ function DFDetailPage(props) {
     const nowTime = moment().format('YYYY-MM-DD HH:mm');
     const characterId = props.match.params.characterId;
     const serverId = props.match.params.serverId;
+
     const [Basic, setBasic] = useState([])
     const [Timeline, setTimeline] = useState([])
     const [TimelineRow, setTimelineRow] = useState([])
     const [StatusRow, setStatusRow] = useState([])
     const [Equipment, setEquipment] = useState([])
+    const [Enchant, setEnchant] = useState([])
+    const [Avatar, setAvatar] = useState([])
     const [Date, setDate] = useState([])
+    const [SkillBuff_a, setSkillBuff_a] = useState([])
+    const [SkillBuff_b, setSkillBuff_b] = useState([])
+    const [SkillBuff_c, setSkillBuff_c] = useState([])
+    const [SkillBuff_i, setSkillBuff_i] = useState([])
+    const [SkillBuff_l, setSkillBuff_l] = useState([])
     const [StartDate, setStartDate] = useState("")
     const [EndDate, setEndDate] = useState("")
     const [EndNumber, setEndNumber] = useState(0)
     const [StartNumber, setStartNumber] = useState(30)
     useEffect(() => {
-        console.log(os.hostname())
+        const api = `/df/servers/${serverId}/characters/${characterId}`
         setStartDate(moment(nowTime).subtract(StartNumber,'d').format('YYYY-MM-DD HH:mm'))
         setEndDate(moment(nowTime).subtract(EndNumber,'d').format('YYYY-MM-DD HH:mm'))
-        const endpoint = `/df/servers/${serverId}/characters/${characterId}/timeline?limit=10&startDate=${StartDate}&endDate=${EndDate}&code=402,403,404,405,406,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520&apikey=${DF_KEY}`
-        fetchDatas(endpoint,1)
-        const endpoint2 = `/df/servers/${serverId}/characters/${characterId}/status?apikey=${DF_KEY}`
-        fetchDatas(endpoint2,3)
-        const endpoint3 = `/df/servers/${serverId}/characters/${characterId}/equip/equipment?apikey=${DF_KEY}`
-        fetchDatas(endpoint3,4)
+        const endpoint1 = `${api}/timeline?limit=10&startDate=${StartDate}&endDate=${EndDate}&code=402,403,404,405,406,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520&apikey=${DF_KEY}`
+        fetchDatas(endpoint1,1)
+        const endpoint3 = `${api}/status?apikey=${DF_KEY}`
+        fetchDatas(endpoint3,3)
+        const endpoint4 = `${api}/equip/equipment?apikey=${DF_KEY}`
+        fetchDatas(endpoint4,4)
+        const endpoint5 = `${api}/equip/avatar?apikey=${DF_KEY}`
+        fetchDatas(endpoint5,5)
+        const endpoint6 = `${api}/skill/buff/equip/equipment?apikey=${DF_KEY}`
+        fetchDatas(endpoint6,6)
+        const endpoint7 = `${api}/skill/buff/equip/avatar?apikey=${DF_KEY}`
+        fetchDatas(endpoint7,7)
+        const endpoint8 = `${api}/skill/buff/equip/creature?apikey=${DF_KEY}`
+        fetchDatas(endpoint8,8)
 
     }, [])
     const fetchDatas = (endpoint,num) => {
@@ -55,17 +71,29 @@ function DFDetailPage(props) {
                 setStatusRow(response.status)
             }
             else if(num===4){
+            console.log(response.equipment)
               setEquipment(response.equipment)
-              console.log(response.equipment)
+            }
+            else if (num ===5){
+                setAvatar(response.avatar)
+            }
+            else if (num ===6){
+                setSkillBuff_a(response.skill.buff.equipment)
+                setSkillBuff_i(response.skill.buff.skillInfo)
+                setSkillBuff_l(response.skill.buff.skillInfo.option)
+            }else if(num ===7){
+                setSkillBuff_b(response.skill.buff.avatar)
+            }else if(num ===8){
+                setSkillBuff_c(response.skill.buff.creature)
             }
             
         })
     }
  
     const loadMoreItems = () => {
-        const endpoint = `/df/servers/${serverId}/characters/${characterId}/timeline?next=${Timeline.next}&apikey=${DF_KEY}`;
+        const endpoint1 = `/df/servers/${serverId}/characters/${characterId}/timeline?next=${Timeline.next}&apikey=${DF_KEY}`;
         if(Timeline.next !==null){
-            fetchDatas(endpoint,1)
+            fetchDatas(endpoint1,1)
         }else{
            
             const st = StartNumber+30;
@@ -169,11 +197,17 @@ function DFDetailPage(props) {
             {Equipment.map((row,index) => (
                 
                 <tr key={index}>
+               
                     <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
                     <td style={{width:'47%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
-                        {row.enchant.status.map((status,index) => (
-                            <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={index}>{status.name+"+"+status.value}</span>
+                        {!row.enchant.reinforceSkill &&row.enchant.status.map((status,i) => (
+                            <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
                         ))}
+                        {
+                            row.enchant.reinforceSkill &&
+                            <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} >{row.enchant.reinforceSkill[0].skills[0].name+"+"+row.enchant.reinforceSkill[0].skills[0].value}</span>
+                            
+                        }
                     </td>
                     <td style={{width:'47%',textAlign:'right'}}><span>{row.reinforce !==0 ? "+"+row.reinforce+(row.amplificationName!==null? "증폭":(row.remodelInfo?"개조":"강화")):""}</span><span>{row.refine !==0 ? `(${row.refine})`:""}</span>
                     
@@ -181,6 +215,119 @@ function DFDetailPage(props) {
                    
                     
                 </tr> 
+                
+            ))}
+            </tbody>
+        </table>
+        </div>
+        </TabPane>
+        <TabPane tab="아바타" key="4">
+        <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>
+                <Title level={3}>아바타</Title>
+               
+                </div>
+        <div style={{border:'1px solid #dedede' , width:'40%', position:'relative' , left:"30%",right:"30%"}}>
+        <table style={{width:"98%"}}>
+            <tbody>
+            {Avatar.map((row,index) => (
+                
+                <tr key={index}>
+                    <td style={{width:'7%'}}>
+                    <span style={{fontSize:'20px',fontWeight:'bold'}}>{row.slotName.split(' ')[0]}</span>
+                    </td>
+                    <td style={{width:'7%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td> 
+                    <td style={{width:'86%'}}><span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
+                    {row.emblems.map((emblem,index) => (
+                        <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
+                    ))}
+                    </td>
+                   
+                    
+                </tr> 
+                
+            ))}
+            </tbody>
+        </table>
+        </div>
+        </TabPane>
+        <TabPane tab="버프강화" key="5">
+        <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>
+                <Title level={3}>버프강화</Title>
+               
+        </div>
+        <div align="right" style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem',fontWeight:'bold'}}>
+        <span>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</span><br/>
+        
+        
+        </div>               
+        <div style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem',fontWeight:'bold'}}>
+        장비
+        </div>
+        <div style={{border:'1px solid #dedede' , width:'40%', position:'relative' , left:"30%",right:"30%"}}>
+      
+        <table style={{width:"98%"}}>
+            <tbody>
+            {SkillBuff_a.map((row,index) => (
+                
+                <tr key={index}>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td>
+                        <span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span>
+                    </td>
+                    
+                   
+                    
+                </tr>  
+                
+            ))}
+            </tbody>
+        </table>
+        </div>
+        <div style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem',fontWeight:'bold',paddingTop:"0.5rem"}}>
+        아바타
+        </div>
+        <div style={{border:'1px solid #dedede' , width:'40%', position:'relative' , left:"30%",right:"30%"}}>
+      
+        <table style={{width:"98%"}}>
+            <tbody>
+            {SkillBuff_b.map((row,index) => (
+                
+                <tr key={index}>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td>
+                        <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
+                        {row.emblems.map((emblem,index) => (
+                            <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
+                        ))}
+                    </td>
+                    
+                   
+                    
+                </tr>  
+                
+            ))}
+            </tbody>
+        </table>
+        </div>
+        <div style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem',fontWeight:'bold',paddingTop:"0.5rem"}}>
+        크리쳐
+        </div>
+        <div style={{border:'1px solid #dedede' , width:'40%', position:'relative' , left:"30%",right:"30%"}}>
+      
+        <table style={{width:"98%"}}>
+            <tbody>
+            {SkillBuff_c.map((row,index) => (
+                
+                <tr key={index}>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td>
+                        <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
+                       
+                    </td>
+                    
+                   
+                    
+                </tr>  
                 
             ))}
             </tbody>

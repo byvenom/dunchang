@@ -147,7 +147,7 @@ function DFDetailPage(props) {
                 <table style={{marginRight:'auto',marginLeft:'auto' }}>
                 <tbody>
                 {TimelineRow && TimelineRow.map((row,index) => (  
-                <tr key={index}> 
+                <tr key={index} className="timeline"> 
                 <td>
                 
                     {(row.code===513 || row.code===505 || row.code===504) &&
@@ -255,8 +255,8 @@ function DFDetailPage(props) {
                 <Title level={3}>버프강화</Title>
                
         </div>
-        <div align="right" style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem',fontWeight:'bold'}}>
-        <span>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</span><br/>
+        <div align="right" style={{width:'40%', position:'relative' , left:"30%",right:"30%",paddingBottom:'0.5rem'}}>
+        <span style={{padding:'3px',border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</span><br/>
         
         
         </div>               
@@ -270,7 +270,7 @@ function DFDetailPage(props) {
             {SkillBuff_a.map((row,index) => (
                 
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
                     <td>
                         <span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span>
                     </td>
@@ -293,7 +293,7 @@ function DFDetailPage(props) {
             {SkillBuff_b.map((row,index) => (
                 
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
                     <td>
                         <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                         {row.emblems.map((emblem,index) => (
@@ -319,7 +319,7 @@ function DFDetailPage(props) {
             {SkillBuff_c.map((row,index) => (
                 
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
                     <td>
                         <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                        

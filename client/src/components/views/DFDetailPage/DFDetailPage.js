@@ -3,7 +3,7 @@ import {Typography, Button, Form,  Input ,Card, Avatar, Col,Row , Descriptions ,
 import {DF_KEY,ServerOptions,GradeOptions} from '../../Config'
 import './DF.css'
 import moment from 'moment';
-import os from 'os';
+import backimg from './img/back_image.png'
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -114,7 +114,7 @@ function DFDetailPage(props) {
                 <Title level={2} ><a href="/dunfa">DUNCHANG</a></Title>
         </div> 
         <div align="center" style={{ position: 'relative'}}>
-                <img style={{width: '300px'  }} src={`https://img-api.neople.co.kr/df/servers/${serverId}/characters/${characterId}?zoom=3`} alt=""  /><br/>
+                <img style={{width: '300px' ,backgroundImage: `url("${backimg}")`,backgroundSize:'cover',backgroundPosition:'center'}} src={`https://img-api.neople.co.kr/df/servers/${serverId}/characters/${characterId}?zoom=3`} alt=""  /><br/>
                 <span>LV.{Basic.level}/{Basic.jobGrowName}/{ServerOptions.find(server => server.value===serverId).label}</span><br/>
                 <span>길드 : {Basic.guildName}</span> <br/>
                 <span>모험단 : {Basic.adventureName}</span><br/>

@@ -57,34 +57,44 @@ function DFDetailPage(props) {
         .then(response => response.json())
         .then(response => {
           
-            if(num===1){
+            if(num===1&&response.timeline){
                 setBasic(response)
                 setDate(response.timeline.date)
                 setTimeline(response.timeline)
                 setTimelineRow([...TimelineRow,...response.timeline.rows])
      
-            }else if(num===2){
+            }else if(num===2&&response.timeline){
                setTimeline(response.timeline)
                setDate(response.timeline.date)
                setTimelineRow(response.timeline.rows)
             }else if(num===3){
                 setStatusRow(response.status)
             }
-            else if(num===4){
-            console.log(response.equipment)
+            else if(num===4&&response.equipment){
+             
               setEquipment(response.equipment)
             }
             else if (num ===5){
+                if(response.avatar){
                 setAvatar(response.avatar)
+                }
             }
-            else if (num ===6){
+            else if (num ===6 && response.skill.buff ){
+               
                 setSkillBuff_a(response.skill.buff.equipment)
                 setSkillBuff_i(response.skill.buff.skillInfo)
                 setSkillBuff_l(response.skill.buff.skillInfo.option)
-            }else if(num ===7){
+               
+                
+            }else if(num ===7 && response.skill.buff){
+          
                 setSkillBuff_b(response.skill.buff.avatar)
-            }else if(num ===8){
+              
+                
+            }else if(num ===8&&response.skill.buff){
+                
                 setSkillBuff_c(response.skill.buff.creature)
+                
             }
             
         })
@@ -194,17 +204,17 @@ function DFDetailPage(props) {
         <div >
         <table align="center" style={{width:'40%',border:'1px solid #dedede' ,minWidth:'460px'}}>
             <tbody>
-            {Equipment.map((row,index) => (
+            {Equipment &&Equipment.map((row,index) => (
                 
                 <tr key={index}>
                
                     <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
                     <td style={{width:'64%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
-                        {!row.enchant.reinforceSkill &&row.enchant.status.map((status,i) => (
+                        {row.enchant&&row.enchant.reinforceSkill ===null &&row.enchant.status.map((status,i) => (
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
                         ))}
                         {
-                            row.enchant.reinforceSkill &&
+                            row.enchant&& row.enchant.reinforceSkill &&
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} >{row.enchant.reinforceSkill[0].skills[0].name+"+"+row.enchant.reinforceSkill[0].skills[0].value}</span>
                             
                         }
@@ -237,7 +247,7 @@ function DFDetailPage(props) {
                     </td>
                     <td style={{width:'7%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td> 
                     <td style={{width:'84%'}}><span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
-                    {row.emblems.map((emblem,index) => (
+                    {row.emblems && row.emblems.map((emblem,index) => (
                         <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
                     ))}
                     </td>
@@ -266,7 +276,7 @@ function DFDetailPage(props) {
         <div>
         <table align="center" style={{border:'1px solid #dedede',width:"40%",minWidth:'460px'}}>
             <tbody>
-            {SkillBuff_a.map((row,index) => (  
+            {SkillBuff_a && SkillBuff_a.map((row,index) => (  
                 <tr key={index}>
                     <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
                     <td>
@@ -283,7 +293,7 @@ function DFDetailPage(props) {
         <div >
         <table align="center" style={{width:"40%", minWidth:'460px',border:'1px solid #dedede'}}>
             <tbody>
-            {SkillBuff_b.map((row,index) => (
+            {SkillBuff_b && SkillBuff_b.map((row,index) => (
                 <tr key={index}>
                     <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
                     <td>
@@ -303,7 +313,7 @@ function DFDetailPage(props) {
         <div>
         <table align="center" style={{width:"40%",border:'1px solid #dedede',minWidth:'460px'}}>
             <tbody>
-            {SkillBuff_c.map((row,index) => (
+            {SkillBuff_c &&SkillBuff_c.map((row,index) => (
                 
                 <tr key={index}>
                     <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>

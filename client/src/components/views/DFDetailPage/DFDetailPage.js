@@ -266,12 +266,14 @@ function DFDetailPage(props) {
                
         </div>
         <div align="center" style={{paddingBottom:'0.5rem'}}>
-        <div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'460px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</p></div><br/>
+        {SkillBuff_i.name &&<div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'460px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</p></div>
+                    }
+        <br/>
         
         
         </div>               
         <div align="center" style={{paddingTop:'1rem',paddingBottom:'0.5rem'}}>
-        <div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>장비</div>
+        {SkillBuff_a.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>장비</div>}
         </div>
         <div>
         <table align="center" style={{border:'1px solid #dedede',width:"40%",minWidth:'460px'}}>
@@ -288,7 +290,7 @@ function DFDetailPage(props) {
         </table>
         </div>
         <div align="center" style={{paddingTop:'0.5rem',paddingBottom:'0.5rem'}}>
-        <div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>아바타</div>
+        {SkillBuff_b.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>아바타</div>}
         </div>
         <div >
         <table align="center" style={{width:"40%", minWidth:'460px',border:'1px solid #dedede'}}>
@@ -308,7 +310,7 @@ function DFDetailPage(props) {
         </table>
         </div>
         <div align="center" style={{paddingTop:'0.5rem',paddingBottom:'0.5rem'}}>
-        <div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>크리쳐</div>
+        {SkillBuff_c.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>크리쳐</div>}
         </div>
         <div>
         <table align="center" style={{width:"40%",border:'1px solid #dedede',minWidth:'460px'}}>

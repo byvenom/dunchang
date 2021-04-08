@@ -1,3 +1,8 @@
 .video:focus{
     outline : none;
 }
+
+.video-js {
+    width : 98.82%;
+    height: 74.3vmin;
+}

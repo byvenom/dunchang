@@ -1,11 +1,9 @@
 import React,{useState,useEffect} from 'react'
-import {Typography, Button, Form,  Input ,Card, Avatar, Col,Row , Descriptions , Tabs} from 'antd'
+import {Typography, Descriptions , Tabs} from 'antd'
 import {DF_KEY,ServerOptions,GradeOptions} from '../../Config'
 import './DF.css'
 import moment from 'moment';
 import backimg from './img/back_image.png'
-
-const { TextArea } = Input;
 const { Title } = Typography;
 const {TabPane} = Tabs;
 
@@ -20,7 +18,7 @@ function DFDetailPage(props) {
     const [TimelineRow, setTimelineRow] = useState([])
     const [StatusRow, setStatusRow] = useState([])
     const [Equipment, setEquipment] = useState([])
-    const [Enchant, setEnchant] = useState([])
+
     const [Avatar, setAvatar] = useState([])
     const [Date, setDate] = useState([])
     const [SkillBuff_a, setSkillBuff_a] = useState([])
@@ -172,11 +170,11 @@ function DFDetailPage(props) {
                         <div>{row.date}<br/>
                         {row.data.guide ? `(가이드)${row.data.raidName} ${row.name} 클리어` : (row.data.squad ? `${row.data.raidName} ${row.name} 스쿼드 클리어`: (row.data.phaseName? `${row.data.raidName} ${row.name} ${row.data.phaseName} 클리어`:`${row.data.raidName} ${row.name} 클리어`))}
                         </div>}
-                    {(row.code===406 || row.code===510 || row.code==405) &&
+                    {(row.code===406 || row.code===510 || row.code===405) &&
                         <div>{row.date}<br/>
                         ({row.data.itemRarity}){row.data.itemName} {row.name}
                         </div>}
-                    {(row.code===401 || row.code===402 || row.code==403 || row.code==404) &&
+                    {(row.code===401 || row.code===402 || row.code===403 || row.code===404) &&
                         <div>{row.date}<br/>
                         {`(${row.data.itemRarity})${row.data.itemName} +${row.data.after} ${row.name}`}{row.data.result?"에 성공 하였습니다":"에 실패 하였습니다"}
                         </div>}
@@ -208,7 +206,7 @@ function DFDetailPage(props) {
                 
                 <tr key={index}>
                
-                    <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px"/></td>
+                    <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px" alt=""/></td>
                     <td style={{width:'64%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
                         {row.enchant&&row.enchant.reinforceSkill ===null &&row.enchant.status.map((status,i) => (
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
@@ -245,7 +243,7 @@ function DFDetailPage(props) {
                     <td style={{width:'9%' , minWidth:'69px'}}>
                     <span style={{fontSize:'20px',fontWeight:'bold'}}>{row.slotName.split(' ')[0]}</span>
                     </td>
-                    <td style={{width:'7%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td> 
+                    <td style={{width:'7%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px" alt=""/></td> 
                     <td style={{width:'84%'}}><span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                     {row.emblems && row.emblems.map((emblem,index) => (
                         <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
@@ -280,7 +278,7 @@ function DFDetailPage(props) {
             <tbody>
             {SkillBuff_a && SkillBuff_a.map((row,index) => (  
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px" alt=""/></td>
                     <td>
                         <span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span>
                     </td>   
@@ -297,7 +295,7 @@ function DFDetailPage(props) {
             <tbody>
             {SkillBuff_b && SkillBuff_b.map((row,index) => (
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px" alt=""/></td>
                     <td>
                         <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                         {row.emblems.map((emblem,index) => (
@@ -318,7 +316,7 @@ function DFDetailPage(props) {
             {SkillBuff_c &&SkillBuff_c.map((row,index) => (
                 
                 <tr key={index}>
-                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px"/></td>
+                    <td style={{width:'6%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px" alt=""/></td>
                     <td>
                         <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                     </td>

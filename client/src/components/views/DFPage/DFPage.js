@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
-import {Typography, Button, Form,  Input ,Card, Avatar, Col,Row} from 'antd'
-import {DF_KEY,DF_URL,ServerOptions} from '../../Config'
+import {Typography, Button, Form,  Input ,Col,Row} from 'antd'
+import {DF_KEY,ServerOptions} from '../../Config'
 
 
 const { Title } = Typography;
-const { Meta} = Card;
+
 
 
 function DFPage() {
@@ -47,7 +47,7 @@ function DFPage() {
 		}
     }
     const onKeyPress = (e) => {
-        if(e.key == 'Enter'){
+        if(e.key === 'Enter'){
             loadMoreItems();
         }
     }

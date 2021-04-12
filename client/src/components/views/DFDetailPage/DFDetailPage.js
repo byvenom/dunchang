@@ -4,6 +4,7 @@ import {DF_KEY,ServerOptions,GradeOptions} from '../../Config'
 import './DF.css'
 import moment from 'moment';
 import backimg from './img/back_image.png'
+import Axios from 'axios';
 const { Title } = Typography;
 const {TabPane} = Tabs;
 
@@ -51,10 +52,9 @@ function DFDetailPage(props) {
 
     }, [])
     const fetchDatas = (endpoint,num) => {
-        fetch(endpoint)
-        .then(response => response.json())
+        Axios.get(endpoint)
+        .then(response=> response.data)
         .then(response => {
-          
             if(num===1&&response.timeline){
                 setBasic(response)
                 setDate(response.timeline.date)
@@ -94,9 +94,10 @@ function DFDetailPage(props) {
                 setSkillBuff_c(response.skill.buff.creature)
                 
             }
-            
         })
+        
     }
+
  
     const loadMoreItems = () => {
         const endpoint1 = `/df/servers/${serverId}/characters/${characterId}/timeline?next=${Timeline.next}&apikey=${DF_KEY}`;

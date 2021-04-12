@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {Typography, Button, Form,  Input ,Col,Row} from 'antd'
 import {DF_KEY,ServerOptions} from '../../Config'
+import Axios from 'axios'
 
 
 const { Title } = Typography;
@@ -23,16 +24,12 @@ function DFPage() {
         setName(e.currentTarget.value)
     }
     const fetchMovies = (endpoint) => {
-        fetch(endpoint,{
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept' : 'application/json'
-			}
-        })
-        .then(response => response.json())
+        Axios.get(endpoint)
+        .then(response=> response.data)
         .then(response => {
             setrows(response.rows)
         })
+        
     }
 
     const loadMoreItems = () => {

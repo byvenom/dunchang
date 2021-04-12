@@ -12,7 +12,8 @@ function MainImage(props) {
             height: '500px',
             backgroundSize:'100% , cover' ,
             backgroundPosition: 'center , center',
-            position: 'relative'
+            position: 'relative',
+            backgroundRepeat: 'no-repeat'
         }}>
             <div>
                 <div style={{ position: 'absolute', maxWidth: '500px', bottom: '2rem' , marginLeft: '2rem'}}>

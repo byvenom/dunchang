@@ -11,24 +11,26 @@ function MoviePage() {
     const [CurrentPage, setCurrentPage] = useState(0)
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-        fetchMovies(endpoint)
+        fetchMovies(endpoint,1)
        
         
     }, [])
 
-    const fetchMovies = (endpoint) => {
+    const fetchMovies = (endpoint,num) => {
         fetch(endpoint)
         .then(response => response.json())
         .then(response => {
             setMovies([...Movies,...response.results])
+            if(num===1){
             setMainMovieImage(response.results[0])
+            }
             setCurrentPage(response.page)
         })
     }
 
     const loadMoreItems = () => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
-        fetchMovies(endpoint)
+        fetchMovies(endpoint,2)
        
     }
     return (

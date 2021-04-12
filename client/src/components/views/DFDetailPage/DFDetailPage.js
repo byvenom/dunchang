@@ -10,16 +10,14 @@ const {TabPane} = Tabs;
 
 function DFDetailPage(props) {
     
-    const nowTime = moment().format('YYYY-MM-DD HH:mm');
-    const characterId = props.match.params.characterId;
-    const serverId = props.match.params.serverId;
-
+    const nowTime = moment().format('YYYY-MM-DD HH:mm')
+    const characterId = props.match.params.characterId
+    const serverId = props.match.params.serverId
     const [Basic, setBasic] = useState([])
     const [Timeline, setTimeline] = useState([])
     const [TimelineRow, setTimelineRow] = useState([])
     const [StatusRow, setStatusRow] = useState([])
     const [Equipment, setEquipment] = useState([])
-
     const [Avatar, setAvatar] = useState([])
     const [Date, setDate] = useState([])
     const [SkillBuff_a, setSkillBuff_a] = useState([])
@@ -49,7 +47,6 @@ function DFDetailPage(props) {
         fetchDatas(endpoint7,7)
         const endpoint8 = `${api}/skill/buff/equip/creature?apikey=${DF_KEY}`
         fetchDatas(endpoint8,8)
-
     }, [])
     const fetchDatas = (endpoint,num) => {
         Axios.get(endpoint)
@@ -60,16 +57,15 @@ function DFDetailPage(props) {
                 setDate(response.timeline.date)
                 setTimeline(response.timeline)
                 setTimelineRow([...TimelineRow,...response.timeline.rows])
-     
             }else if(num===2&&response.timeline){
                setTimeline(response.timeline)
                setDate(response.timeline.date)
                setTimelineRow(response.timeline.rows)
             }else if(num===3){
                 setStatusRow(response.status)
+                console.log(response.status)
             }
             else if(num===4&&response.equipment){
-             
               setEquipment(response.equipment)
             }
             else if (num ===5){
@@ -78,22 +74,15 @@ function DFDetailPage(props) {
                 }
             }
             else if (num ===6 && response.skill.buff ){
-               
                 setSkillBuff_a(response.skill.buff.equipment)
                 setSkillBuff_i(response.skill.buff.skillInfo)
                 setSkillBuff_l(response.skill.buff.skillInfo.option)
-               
-                
             }else if(num ===7 && response.skill.buff){
-          
                 setSkillBuff_b(response.skill.buff.avatar)
-              
-                
             }else if(num ===8&&response.skill.buff){
-                
                 setSkillBuff_c(response.skill.buff.creature)
-                
             }
+            
         })
         
     }
@@ -233,8 +222,7 @@ function DFDetailPage(props) {
         <TabPane tab="아바타" key="4">
         <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>
                 <Title level={3}>아바타</Title>
-               
-                </div>
+        </div>
         <div>
         <table align="center" style={{border:'1px solid #dedede',width:"40%",minWidth:'460px'}}>
             <tbody>
@@ -250,10 +238,7 @@ function DFDetailPage(props) {
                         <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
                     ))}
                     </td>
-                   
-                    
-                </tr> 
-                
+                </tr>   
             ))}
             </tbody>
         </table>
@@ -265,7 +250,7 @@ function DFDetailPage(props) {
                
         </div>
         <div align="center" style={{paddingBottom:'0.5rem'}}>
-        {SkillBuff_i.name &&<div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'460px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_i.name +" LV."+SkillBuff_l.level}</p></div>
+        {SkillBuff_i.name &&<div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'460px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_l ? SkillBuff_i.name +" LV."+SkillBuff_l.level: ""}</p></div>
                     }
         <br/>
         
@@ -289,7 +274,7 @@ function DFDetailPage(props) {
         </table>
         </div>
         <div align="center" style={{paddingTop:'0.5rem',paddingBottom:'0.5rem'}}>
-        {SkillBuff_b.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>아바타</div>}
+        {SkillBuff_b &&SkillBuff_b.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>아바타</div>}
         </div>
         <div >
         <table align="center" style={{width:"40%", minWidth:'460px',border:'1px solid #dedede'}}>
@@ -309,7 +294,7 @@ function DFDetailPage(props) {
         </table>
         </div>
         <div align="center" style={{paddingTop:'0.5rem',paddingBottom:'0.5rem'}}>
-        {SkillBuff_c.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>크리쳐</div>}
+        {SkillBuff_c&&SkillBuff_c.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>크리쳐</div>}
         </div>
         <div>
         <table align="center" style={{width:"40%",border:'1px solid #dedede',minWidth:'460px'}}>
@@ -322,7 +307,6 @@ function DFDetailPage(props) {
                         <span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                     </td>
                 </tr>  
-                
             ))}
             </tbody>
         </table>

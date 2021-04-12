@@ -18,6 +18,8 @@ import ChartDetailPage from './views/ChartDetailPage/ChartDetailPage'
 import UploadChartPage from './views/UploadChartPage/UploadChartPage'
 import DFPage from './views/DFPage/DFPage'
 import DFDetailPage  from './views/DFDetailPage/DFDetailPage'
+import ItemSearchPage from './views/ItemSearchPage/ItemSearchPage'
+import ItemDetailPage from './views/ItemDetailPage/ItemDetailPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -45,6 +47,8 @@ function App() {
           <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
           {/* DF 클론 */}
           <Route exact path="/dunfa" component={Auth(DFPage, null)} />
+          <Route exact path="/dunfa/itemsearch" component={Auth(ItemSearchPage, null)} />
+          <Route exact path="/dunfa/itemdetail/:itemId" component={Auth(ItemDetailPage, null)} />
           <Route exact path="/dunfa/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
         </Switch>
       </div>

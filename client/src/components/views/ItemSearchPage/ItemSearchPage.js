@@ -25,7 +25,7 @@ function ItemSearchPage() {
         Axios.get(endpoint)
         .then(response=> response.data)
         .then(response => {
-            console.log(rows)
+           
         setrows(response.rows)
           
         })

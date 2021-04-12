@@ -63,7 +63,7 @@ function DFDetailPage(props) {
                setTimelineRow(response.timeline.rows)
             }else if(num===3){
                 setStatusRow(response.status)
-                console.log(response.status)
+               
             }
             else if(num===4&&response.equipment){
               setEquipment(response.equipment)

@@ -21,12 +21,12 @@ function ItemDetailPage(props) {
         .then(response => {
          setkeys(Object.keys(response))
          setrows(Object.values(response))
-         console.log(response)
+        
         }
         )
     }
     const gogoik = () => {
-        console.log(rows)
+      
     }
   
 

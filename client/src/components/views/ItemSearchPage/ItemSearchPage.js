@@ -69,7 +69,7 @@ function ItemSearchPage() {
                 <Title level={4}>{SearchName}에 대한 검색 결과입니다.</Title>
             </div>
             <div align="center" >
-            
+            <div><b style={{fontSize:'48px'}}>아직 수정중.......</b></div>
             <br/>
             <Input style={{width:200}} placeholder="아이템명" onChange={onNameChange} value={Name} onKeyPress={onKeyPress}/>
             <Button type="primary" onClick={loadMoreItems}>

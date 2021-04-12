@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Axios from 'axios'
 import {Typography, Descriptions , Tabs} from 'antd'
 import {DF_KEY,DF_URL} from '../../Config'
-import { json } from 'body-parser';
+
 const { Title } = Typography;
 const {TabPane} = Tabs;
 function ItemDetailPage(props) {
@@ -21,6 +21,7 @@ function ItemDetailPage(props) {
         .then(response => {
          setkeys(Object.keys(response))
          setrows(Object.values(response))
+         console.log(response)
         }
         )
     }
@@ -38,10 +39,11 @@ function ItemDetailPage(props) {
         <div style={{width:"85%", paddingTop:'1rem',minWidth:'460px'}}>
         <Descriptions bordered>
         {rows.map((row,index)=>(
-         <Descriptions.Item label={keys[index]}>{row}</Descriptions.Item>   
+         typeof(row)==="string" && <Descriptions.Item label={keys[index]} key={index}>{row}</Descriptions.Item>   
         ))
         }
         </Descriptions>
+   
         </div>
         </div>
         </div>

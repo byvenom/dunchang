@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Typography, Button, Form,  Input ,Col,Row} from 'antd'
+import {Typography, Button, Form,  Input ,Col,Row,AutoComplete} from 'antd'
 import {DF_KEY,GradeOptions} from '../../Config'
 import Axios from 'axios'
 
@@ -16,37 +16,40 @@ function ItemSearchPage() {
     const [rows, setrows] = useState([])
     const [Status, setStatus] = useState("none")
     const [SearchName, setSearchName] = useState("")
-  
+    const [Options, setOptions] = useState([])
+    const [SearchRow, setSearchRow] = useState([])
 
     const onNameChange = (e) => {
-        setName(e.currentTarget.value)
+        setName(e)
     }
     const fetchMovies = (endpoint) => {
         Axios.get(endpoint)
         .then(response=> response.data)
         .then(response => {
-           
+        console.log(response)
         setrows(response.rows)
           
         })
         
     }
 
-    const loadMoreItems = () => {
-		if(Name === null || Name.length === 1 || Name ===""){
-            return alert('값을 확인해주세요')
-        }
-		else{
-        const endpoint = `/df/items?itemName=${Name}&wordType=full&limit=30&apikey=${DF_KEY}`;
+
+    const searchResult = (text) => {
+        const endpoint = `/df/items?itemName=${text}&wordType=front&limit=30&apikey=${DF_KEY}`;
         fetchMovies(endpoint)
-        setStatus("")
-        setSearchName(Name)
-		}
+        rows.map((row,index)=>{
+            const information = {
+                id:row.itemId,
+                name:row.itemName
+            }
+            setSearchRow([...SearchRow,information])
+        })
+        return SearchRow
     }
-    const onKeyPress = (e) => {
-        if(e.key === 'Enter'){
-            loadMoreItems();
-        }
+    const onNameSearch = (text) => {
+        setOptions(
+            !text ? [] : searchResult(text)
+        );
     }
     const renderCards = rows?rows.map((row,index) =>{
              
@@ -71,10 +74,8 @@ function ItemSearchPage() {
             <div align="center" >
             <div><b style={{fontSize:'48px'}}>아직 수정중.......</b></div>
             <br/>
-            <Input style={{width:200}} placeholder="아이템명" onChange={onNameChange} value={Name} onKeyPress={onKeyPress}/>
-            <Button type="primary" onClick={loadMoreItems}>
-                검색
-            </Button>
+            <AutoComplete style={{width:200}} placeholder="아이템명" onChange={onNameChange} value={Name} onSearch={onNameSearch} options={Options} />
+        
             </div>
             </Form>
             <br/> 

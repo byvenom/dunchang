@@ -28,6 +28,7 @@ function DFPage() {
         .then(response=> response.data)
         .then(response => {
             setrows(response.rows)
+         
         })
         
     }

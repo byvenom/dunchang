@@ -55,7 +55,7 @@ function VideoUploadPage(props) {
         Axios.post('/api/video/uploadfiles', formData, config)
         .then(response => {
             if(response.data.success) {
-                console.log(response.data)
+               
                 let variable = {
                     url:response.data.url,
                     fileName: response.data.fileName
@@ -75,7 +75,7 @@ function VideoUploadPage(props) {
                     }
                 })
             }else {
-                alert('비디오 업로드를 실패했습니다.')
+                alert('확장자가 mp4인 파일만 가능합니다.')
             }
         })
     }

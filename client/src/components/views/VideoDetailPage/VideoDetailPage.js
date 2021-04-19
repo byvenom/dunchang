@@ -8,18 +8,22 @@ import LikeDislikes from './Sections/LikeDislikes';
 import "./vd.css";
 import VideoPlayer from 'react-video-js-player';
 import os from 'os';
+import $ from 'jquery'
+
+
 
 
 
 function VideoDetailPage(props) {
     const videoId = props.match.params.videoId;
-   
+    
+    $(".dpdp").parent().css({"float":"right"})
     const variable = { videoId:videoId }
-   
     const [VideoDetail, setVideoDetail] = useState([])
     const [Comments, setComments] = useState([])
     const [Hits, setHits] = useState(0)
     useEffect(() => {
+        
         Axios.post('/api/video/hit',variable)
         .then(response => {
             if(response.data.success){
@@ -71,10 +75,10 @@ function VideoDetailPage(props) {
                         </List.Item>
                         <List.Item>
                         
-                       <span></span>
-                       <span></span>
-                       <span> {"조회수 "+Hits+"회"} </span>
+
+                       <span className="dpdp"> {"조회수 "+Hits+"회"} </span>
                         </List.Item>
+                        <br/>
                         
                         {/* Comments */}
                         <Comment refreshFunction={refreshFunction} commentLists={Comments} postId={videoId}/>
@@ -87,7 +91,7 @@ function VideoDetailPage(props) {
                 
             </Row>
         )
-    }
+    } 
     else{
         return (
             <div>.... loading</div>

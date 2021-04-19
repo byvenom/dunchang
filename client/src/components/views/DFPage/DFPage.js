@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Typography, Button, Form,  Input ,Col,Row} from 'antd'
 import {DF_KEY,ServerOptions} from '../../Config'
 import Axios from 'axios'
-
+import logo from './img/RRRR.jpg'
 
 const { Title } = Typography;
 
@@ -74,7 +74,7 @@ function DFPage() {
     return (
         <div style={{ maxWidth:'1200px', margin:'2rem auto'}}>
             <div style={{ textAlign:'center', marginBottom:'2rem'}}>
-                <Title level={2}><a href="/dunfa">DUNCHANG</a></Title>
+                <Title level={2}><a href="/dunfa"><img src={logo} className="App-logo" alt=""/>DUNCHANG<img src={logo} className="App-logo2" alt=""/></a></Title>
             </div> 
                 <Form>
 

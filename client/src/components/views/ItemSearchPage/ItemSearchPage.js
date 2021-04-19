@@ -72,7 +72,7 @@ function ItemSearchPage() {
                 <Title level={4}>{SearchName}에 대한 검색 결과입니다.</Title>
             </div>
             <div align="center" >
-            <div><b style={{fontSize:'48px'}}>아직 수정중.......</b></div>
+            <div><b className="updating" style={{fontSize:'48px'}}>아직 수정중.......</b></div>
             <br/>
             <AutoComplete style={{width:200}} placeholder="아이템명" onChange={onNameChange} value={Name} onSearch={onNameSearch} options={Options} />
         

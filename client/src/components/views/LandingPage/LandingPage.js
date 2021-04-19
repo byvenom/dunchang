@@ -29,7 +29,7 @@ function LandingPage() {
         <a href={` /video/detail/${video._id}`}>
             <div style={{ position: 'relative'}}>
                 
-                <img style={{ width: '100%'}} src={`http://${os.hostname()}:5000/${video.thumbnail}`} alt="" />
+                <img className="scale"style={{ width: '100%'}} src={`http://${os.hostname()}:5000/${video.thumbnail}`} alt="" />
                  <div className="duration">
                      <span>{minutes} : {seconds}</span>
                  </div>

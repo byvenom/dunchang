@@ -35,7 +35,7 @@ function ItemDetailPage(props) {
         <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>
         
         <Title level={3}>아이템정보</Title>
-        <div><b style={{fontSize:'48px'}}>아직 수정중.......</b></div>
+        <div><b style={{fontSize:'48px'}} className="updating">아직 수정중.......</b></div>
         <div style={{width:"85%", paddingTop:'1rem',minWidth:'460px'}}>
         <Descriptions bordered>
         {rows.map((row,index)=>(

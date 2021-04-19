@@ -59,7 +59,7 @@ function DFPage() {
         return <React.Fragment key={index}><Col lg={6} md={8} xs={24}>
                 <a href={`/dunfa/detail/${serverIds}/${characterIds}`}>
                 <div style={{ position: 'relative'}}>
-                <img style={{width: '100%'  }} src={`https://img-api.neople.co.kr/df/servers/${serverIds}/characters/${characterIds}?zoom=1`} alt=""  />
+                <img className="scale" style={{width: '100%'  }} src={`https://img-api.neople.co.kr/df/servers/${serverIds}/characters/${characterIds}?zoom=1`} alt=""  />
                 </div>
                 </a>
                 <br/>

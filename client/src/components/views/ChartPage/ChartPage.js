@@ -24,8 +24,8 @@ function ChartPage() {
       
     return  <React.Fragment key={index}><Col lg={6} md={8} xs={24}>
     <a href={` /chart/detail/${chart._id}`}>
-        <div style={{ position: 'relative'}}>
-            <Line
+        <div style={{ position: 'relative'}} className="scale">
+            <Line 
             options={{
                 legend: {
                   display: false,

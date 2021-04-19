@@ -70,12 +70,10 @@ function VideoDetailPage(props) {
                             
                         </List.Item>
                         <List.Item>
-                        <div style={{ paddingLeft:'74rem'}}>
-                        <List.Item.Meta
-                                title={"조회수 "+Hits+"회"}
-                                
-                            />
-                        </div>
+                        
+                       <span></span>
+                       <span></span>
+                       <span> {"조회수 "+Hits+"회"} </span>
                         </List.Item>
                         
                         {/* Comments */}

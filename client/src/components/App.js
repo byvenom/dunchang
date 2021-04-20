@@ -20,6 +20,7 @@ import DFPage from './views/DFPage/DFPage'
 import DFDetailPage  from './views/DFDetailPage/DFDetailPage'
 import ItemSearchPage from './views/ItemSearchPage/ItemSearchPage'
 import ItemDetailPage from './views/ItemDetailPage/ItemDetailPage'
+import Test from './views/WidGetPage/Test'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -28,6 +29,7 @@ function App() {
   
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
+    
       <NavBar />
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
@@ -50,8 +52,11 @@ function App() {
           <Route exact path="/dunfa/itemsearch" component={Auth(ItemSearchPage, null)} />
           <Route exact path="/dunfa/itemdetail/:itemId" component={Auth(ItemDetailPage, null)} />
           <Route exact path="/dunfa/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
+      
         </Switch>
+        <Test/>
       </div>
+     
       <Footer />
     </Suspense>
   );

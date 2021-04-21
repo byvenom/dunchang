@@ -6,18 +6,37 @@ class ActionProviderDocs {
       this.setState = setStateFunc;
       this.createClientMessage = createClientMessage
     }
+    handlePhotoList = () => {
+      const message = this.createChatBotMessage(
+        "사진정보",
+        {
+          widget: "photoLinks",
+        }
+      );
   
+      this.addMessageToBotState(message);
+    };
+    handleJavascriptList = () => {
+      const message = this.createChatBotMessage(
+        "인기 동영상 정보 ",
+        {
+          widget: "javascriptLinks",
+        }
+      );
+  
+      this.addMessageToBotState(message);
+    };
     handleMessageParser = () => {
       const messages = this.createChatBotMessage(
-        "The message parser controls how the bot reads input and decides which action to invoke.",
-        { widget: "messageParser", withAvatar: true }
+        "컨트롤하기 위한 영역입니다.",
+        { widget: "todos", withAvatar: true }
       );
   
       this.addMessageToBotState(messages);
     };
   
     handleDefault = () => {
-      const message = this.createChatBotMessage("어떤걸 도와 드릴까요?", {
+      const message = this.createChatBotMessage("아직 학습중에 있습니다. 올바른 검색을 해주세요", {
         withAvatar: true,
       });
   

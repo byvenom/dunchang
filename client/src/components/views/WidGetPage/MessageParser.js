@@ -9,7 +9,12 @@ class MessageParser {
   
     parse = (message) => {
       const lowerCase = message.toLowerCase();
-  
+      if(lowerCase.includes("효")||lowerCase.includes("hyo")){
+        return this.actionProvider.handlePhotoList();
+      }
+      if(lowerCase.includes("비디오")||lowerCase.includes("video")||lowerCase.includes("영상")){
+        return this.actionProvider.handleJavascriptList();
+      }
       if (
         lowerCase.includes("messageparser") ||
         lowerCase.includes("parse") ||

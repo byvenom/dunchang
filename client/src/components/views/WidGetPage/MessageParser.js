@@ -12,7 +12,7 @@ class MessageParser {
       if(lowerCase.includes("효재")||lowerCase.includes("효복")){
         return this.actionProvider.handleHiddenPhotoList(1);
       }
-      if(lowerCase.includes("창주")||lowerCase.includes("피sh")){
+      if(lowerCase.includes("창주")||lowerCase.includes("피sh")||lowerCase.includes("따봉")){
         return this.actionProvider.handleHiddenPhotoList(2);
       }
       if(lowerCase.includes("사진")||lowerCase.includes("photo")||lowerCase.includes("그림")||lowerCase.includes("picture")){

@@ -3,7 +3,7 @@ import Chatbot from "react-chatbot-kit";
 import config from "./config";
 import actionProvider from "./ActionProviderDocs";
 import messageParser from "./MessageParser";
-import chatimg from "./bot.png"
+import chatimg from "./img/bot.png"
 import $ from "jquery"
 function Test() {
   $(".react-chatbot-kit-chat-input").attr({"placeholder":"질문을 입력해주세요."});

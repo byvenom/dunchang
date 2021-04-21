@@ -6,6 +6,27 @@ class ActionProviderDocs {
       this.setState = setStateFunc;
       this.createClientMessage = createClientMessage
     }
+    handleHiddenPhotoList = (check) => {
+      
+      if(check===1){
+         const message = this.createChatBotMessage(
+        "효재사진정보",
+        {
+          widget: "hiddenPhotoLinks",
+        }
+      );
+      this.addMessageToBotState(message);}
+      else if(check===2){
+        const message = this.createChatBotMessage(
+        "창주사진정보",
+        {
+          widget: "hiddenPhotoLinks2",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      
+    };
     handlePhotoList = () => {
       const message = this.createChatBotMessage(
         "사진정보",
@@ -36,11 +57,14 @@ class ActionProviderDocs {
     };
   
     handleDefault = () => {
-      const message = this.createChatBotMessage("아직 학습중에 있습니다. 올바른 검색을 해주세요", {
-        withAvatar: true,
+      const message = this.createChatBotMessage("현재 학습되지않은 언어입니다.", {
+       withAvatar: true,delay: 300,
       });
-  
+      const message2 = this.createChatBotMessage("아래키워드를 이용해보시겠습니까?", {
+        widget:"learningOptions",withAvatar: true,delay: 400,
+      });
       this.addMessageToBotState(message)
+      this.addMessageToBotState(message2)
     };
   
     addMessageToBotState = (messages) => {

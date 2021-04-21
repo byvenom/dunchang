@@ -7,7 +7,7 @@ function PhotoList (props)  {
   const photoMarkup = props.options.map((photo) => (
     <li key={photo.id} className="link-list-item">
       <img 
-      src={require(`./${photo.url}`)}
+      src={require(`./img/${photo.url}`)}
       className="link-list-item-url"
       />
     </li>

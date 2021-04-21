@@ -1,6 +1,6 @@
 import React from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
-import botimg from './bot.png'
+import botimg from './img/bot.png'
 import MessageParser from "./MessageParser";
 import ActionProviderDocs from "./ActionProviderDocs";
 import LearningOptions from "./LearningOptions"
@@ -93,8 +93,34 @@ const config = {
           {
             url:
               "bot.png",
-            id: 2,
+            id: 1,
           },
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "hyo.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks2",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "chang.jpg",
+            id: 1,
+          }
         ],
       },
     },

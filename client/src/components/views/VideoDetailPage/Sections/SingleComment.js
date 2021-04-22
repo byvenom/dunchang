@@ -54,7 +54,7 @@ function SingleComment(props) {
                 actions={actions}
                 author={props.comment.writer? props.comment.writer.name:""}
                 avatar={<Avatar src={props.comment.writer?props.comment.writer.image:""} alt="" />}
-                content={ <p> {props.comment.content}</p>}
+                content={ <span> {props.comment.content}</span>}
             />
             {OpenReply &&
             <form style={{ display:'flex'}} onSubmit={onSubmit}>

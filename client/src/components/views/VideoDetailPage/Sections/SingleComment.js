@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import { Comment, Avatar } from 'antd'
-import { useSelector} from 'react-redux'
+import { useSelector , shallowEqual} from 'react-redux'
 import LikeDislikes from './LikeDislikes'
 import Axios from 'axios';
+import {withRouter} from 'react-router-dom'
 
 
 function SingleComment(props) {
-    const user = useSelector(state =>state.user);
+    const user = useSelector(state =>state.user,shallowEqual);
+    const check = useSelector(state =>state.user.userData?state.user.userData.error:"",shallowEqual);
     const [OpenReply, setOpenReply] = useState(false)
     const [CommentValue, setCommentValue] = useState("")
+    const onLogin = () => {
+        alert('로그인이 필요합니다.');
+        props.history.push('/login')
+    }
     const onclickReplyOpen = ()=>{
         setOpenReply(!OpenReply)
     }
@@ -61,7 +67,7 @@ function SingleComment(props) {
                 
                 />
                 <br /><br />
-                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>작성</button>
+                <input type="button" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit} value="작성" />
 
             </form>
             }
@@ -69,4 +75,4 @@ function SingleComment(props) {
     )
 }
 
-export default SingleComment
+export default withRouter(SingleComment)

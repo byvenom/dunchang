@@ -1,14 +1,18 @@
 import React , {useEffect,useState} from 'react'
 import { Tooltip, Icon} from 'antd'
 import Axios from 'axios'
+import { useSelector , shallowEqual} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 
 
 function LikeDislikes(props) {
+    const check = useSelector(state =>state.user.userData?state.user.userData.error:"",shallowEqual);
     const [Likes, setLikes] = useState(0)
     const [Dislikes, setDislikes] = useState(0)
     const [LikeAction, setLikeAction] = useState(null)
     const [DisLikeAction, setDisLikeAction] = useState(null)
+    
     let variable = { }
     if(props.video){
         variable = { videoId:props.videoId , userId:props.userId }
@@ -48,7 +52,10 @@ function LikeDislikes(props) {
             }
         })
     }, [])
-
+        const onLogin = () => {
+            alert('로그인이 필요합니다.');
+            props.history.push('/login')
+        }
         const onLike = ( ) => {
 
             if(LikeAction === null){
@@ -117,7 +124,7 @@ function LikeDislikes(props) {
                 <Tooltip title="Like">
                     <Icon type="like"
                         theme={LikeAction ==='liked'? 'filled' : 'outlined'}
-                        onClick={onLike}
+                        onClick={check? onLogin:onLike}
                     />
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }} > {Likes}</span>
@@ -127,7 +134,7 @@ function LikeDislikes(props) {
                 <Tooltip title="Dislike">
                     <Icon type="dislike"
                         theme={DisLikeAction ==='disliked'? 'filled' : 'outlined'}
-                        onClick={onDislike}
+                        onClick={check? onLogin:onDislike}
                     />
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }} > {Dislikes}</span>
@@ -137,4 +144,4 @@ function LikeDislikes(props) {
     )
 }
 
-export default LikeDislikes
+export default withRouter(LikeDislikes)

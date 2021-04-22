@@ -8,7 +8,7 @@ function PhotoList (props)  {
     <li key={photo.id} className="link-list-item">
       <img 
       src={require(`./img/${photo.url}`)}
-      className="link-list-item-url"
+      className="link-list-item-src"
       />
     </li>
   ));

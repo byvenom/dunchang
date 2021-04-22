@@ -6,7 +6,7 @@ import './all.css'
 function Footer() {
     return (
         <div style={{
-            height: '80px', display: 'flex',
+            height: '80px', display: 'flex', width: '100%',
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>

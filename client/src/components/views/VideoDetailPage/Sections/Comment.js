@@ -1,15 +1,25 @@
 import Axios from 'axios'
-import React,{ useState } from 'react'
-import { useSelector} from 'react-redux'
+import React,{ useState,useEffect } from 'react'
+import { useSelector,shallowEqual} from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
+import {withRouter} from 'react-router-dom'
 function Comment(props) {
-    
+   
     const videoId = props.postId;
-    const user = useSelector(state =>state.user);
+    const user = useSelector(state =>state.user,shallowEqual);
+    const check = useSelector(state =>state.user.userData?state.user.userData.error:"",shallowEqual);
     const [commentValue, setcommentValue] = useState("")
+
+    useEffect(() => {
+       
+    }, [])
     const handleClick = (event) => {
         setcommentValue(event.currentTarget.value)
+    }
+    const onLogin = () => {
+        alert('로그인이 필요합니다.');
+        props.history.push('/login')
     }
     const onSubmit = (event) => {
         // 새로고침 안되게함
@@ -64,8 +74,9 @@ function Comment(props) {
                 
                 />
                 <br />
-                <button style={{ width:'20%' ,height:'52px'} } onClick={onSubmit}>작성</button>
-
+          <input type="button" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit} value="작성"/>
+            
+           
             </form>
             }
            
@@ -73,4 +84,4 @@ function Comment(props) {
     )
 }
 
-export default Comment
+export default withRouter(Comment)

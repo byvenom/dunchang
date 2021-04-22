@@ -1,8 +1,9 @@
 import Axios from 'axios'
 import React, { useEffect,useState } from 'react'
-
+import { useSelector , shallowEqual} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 function Subscribe(props) {
-
+    const check = useSelector(state =>state.user.userData?state.user.userData.error:"",shallowEqual);
     const [SubscribeNumber, setSubscribeNumber] = useState("")
     const [Subscribed, setSubscribed] = useState("")
 
@@ -29,7 +30,10 @@ function Subscribe(props) {
                 }
             })
     }, [])
-
+    const onLogin = () => {
+        alert('로그인이 필요합니다.');
+        props.history.push('/login')
+    }
     const onSubscribe = () =>{
 
         let subscribedVariable = {
@@ -68,7 +72,7 @@ function Subscribe(props) {
                 style={{ backgroundColor:`${Subscribed ?'#AAAAAA':'#CC0000'}`, borderRadius:'4px',
                 color: 'white', padding: '10px 16px',
                 fontWeight: '500', fontSize:'1rem', textTransform: 'uppercase'}}
-                onClick={onSubscribe}
+                onClick={check ?  onLogin:onSubscribe}
                 
                 >
                     {SubscribeNumber} {Subscribed ? '구독 중' : '구독'}
@@ -77,4 +81,4 @@ function Subscribe(props) {
     )
 }
 
-export default Subscribe
+export default withRouter(Subscribe)

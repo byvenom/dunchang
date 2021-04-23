@@ -2,11 +2,10 @@ import React,{useState,useEffect} from 'react'
 import {Card, Avatar, Col, Typography,Row} from 'antd';
 import axios from 'axios';
 import {Line} from 'react-chartjs-2';
-import {useSelector} from 'react-redux';
 const {Title} = Typography;
 const { Meta} = Card;
 function ChartPage() {
-    const user = useSelector(state => state.user);
+
     const [Charts, setCharts] = useState([]) 
     useEffect(() => {
     

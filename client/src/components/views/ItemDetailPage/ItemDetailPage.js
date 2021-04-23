@@ -1,15 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import Axios from 'axios'
-import {Typography, Descriptions , Tabs} from 'antd'
-import {DF_KEY,DF_URL} from '../../Config'
+import {Typography, Descriptions} from 'antd'
+import {DF_KEY} from '../../Config'
 
 const { Title } = Typography;
-const {TabPane} = Tabs;
+
 function ItemDetailPage(props) {
     const itemId = props.match.params.itemId;
     const [keys,setkeys] = useState([])
     const [rows, setrows] = useState([])
-    const a = [1,2,3,4,5];
     useEffect(() => {
         const endpoint = `/df/items/${itemId}?apikey=${DF_KEY}`;
         fetchDatas(endpoint)
@@ -25,11 +24,6 @@ function ItemDetailPage(props) {
         }
         )
     }
-    const gogoik = () => {
-      
-    }
-  
-
     return (
         <div>
         <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>

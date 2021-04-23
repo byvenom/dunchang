@@ -19,7 +19,7 @@ function ChartDetailPage(props) {
     const [state, setstate] = useState(false);
     const [stateValue1, setstateValue1] = useState("")
     const [stateValue2, setstateValue2] = useState("none")
-    const [Index, setIndex] = useState(0);
+ 
       const onChange = e => setInputText(e.target.value);
       const onTitleChange = (e) => {
         setChartTitle(e.currentTarget.value)
@@ -98,7 +98,7 @@ function ChartDetailPage(props) {
                 setNextId(data.data.length)
                 const ssum = data.data.reduce((prev,next)=> prev + parseFloat(next.value),0);
                 setAverage((ssum / data.data.length).toFixed(2))
-                setIndex(data.data.length)
+           
                 
             }
             else {

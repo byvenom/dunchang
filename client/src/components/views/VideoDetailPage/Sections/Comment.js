@@ -4,6 +4,7 @@ import { useSelector,shallowEqual} from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
 import {withRouter} from 'react-router-dom'
+import {Button} from 'antd'
 function Comment(props) {
    
     const videoId = props.postId;
@@ -74,7 +75,7 @@ function Comment(props) {
                 
                 />
                 <br />
-          <input type="button" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit} value="작성"/>
+          <Button type="primary" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit} >작성</Button>
             
            
             </form>

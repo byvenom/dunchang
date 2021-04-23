@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Typography, Button, Form,  Input ,Col,Row,AutoComplete} from 'antd'
+import {Typography, Form ,AutoComplete} from 'antd'
 import {DF_KEY,GradeOptions} from '../../Config'
 import Axios from 'axios'
 
@@ -9,16 +9,10 @@ const { Title } = Typography;
 
 
 function ItemSearchPage() {
-    
-   
-  
     const [Name, setName] = useState("")
     const [rows, setrows] = useState([])
-    const [Status, setStatus] = useState("none")
-    const [SearchName, setSearchName] = useState("")
     const [Options, setOptions] = useState([])
     const [SearchRow, setSearchRow] = useState([])
-
     const onNameChange = (e) => {
         setName(e)
     }
@@ -68,9 +62,6 @@ function ItemSearchPage() {
             </div> 
                 <Form>
 
-            <div style={{display:Status, textAlign:'center'}}>
-                <Title level={4}>{SearchName}에 대한 검색 결과입니다.</Title>
-            </div>
             <div align="center" >
             <div><b className="updating" style={{fontSize:'48px'}}>아직 수정중.......</b></div>
             <br/>

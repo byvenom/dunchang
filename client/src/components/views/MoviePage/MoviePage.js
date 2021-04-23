@@ -3,7 +3,7 @@ import React , {useEffect, useState} from 'react'
 import {API_URL, API_KEY, IMAGE_BASE_URL} from '../../Config'
 import MainImage from '../Commons/MainImage'
 import GridCards from '../Commons/GridCards'
-import { Row } from 'antd'
+import { Row,Button } from 'antd'
 function MoviePage() {
 
     const [Movies, setMovies] = useState([]);
@@ -71,7 +71,7 @@ function MoviePage() {
 
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button onClick={loadMoreItems}> 더보기</button>
+                <Button type="link" size="large" onClick={loadMoreItems}> 더보기</Button>
             </div>
             
         </div>

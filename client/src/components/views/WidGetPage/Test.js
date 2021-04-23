@@ -40,7 +40,7 @@ function Test() {
       )}
     </div>
     <div style={{position:'absolute',right:'30px',bottom:'30px'}}>
-        <button style={{border:0,background:'none'}} onClick={() => {toggleBot((prev) => !prev);onInset(showBot)}}><img src={chatimg} style={{width:'48px',height:'48px',boxShadow:inSet}}/></button>
+        <button style={{border:0,background:'none'}} onClick={() => {toggleBot((prev) => !prev);onInset(showBot)}}><img src={chatimg} alt="" style={{width:'48px',height:'48px',boxShadow:inSet}}/></button>
     </div>
        
     </div>

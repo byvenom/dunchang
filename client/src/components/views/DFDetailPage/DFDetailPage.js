@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Typography, Descriptions , Tabs} from 'antd'
+import {Typography, Descriptions , Tabs,Button} from 'antd'
 import {DF_KEY,ServerOptions,GradeOptions} from '../../Config'
 import './DF.css'
 import moment from 'moment';
@@ -181,7 +181,7 @@ function DFDetailPage(props) {
                 </tbody>
                 </table>
                 <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button onClick={loadMoreItems}> 더보기</button>
+                <Button type="link" size="large" onClick={loadMoreItems}> 더보기</Button>
             </div>
         </TabPane>
         <TabPane tab="장착장비" key="3">

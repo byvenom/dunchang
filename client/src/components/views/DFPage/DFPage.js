@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Typography, Button, Form,  Input ,Col,Row} from 'antd'
 import {DF_KEY,ServerOptions} from '../../Config'
 import Axios from 'axios'
-import logo from './img/RRRR.jpg'
+
 
 const { Title } = Typography;
 

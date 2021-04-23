@@ -9,6 +9,7 @@ function PhotoList (props)  {
       <img 
       src={require(`./img/${photo.url}`)}
       className="link-list-item-src"
+      alt=""
       />
     </li>
   ));

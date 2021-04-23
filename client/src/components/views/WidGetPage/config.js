@@ -37,7 +37,7 @@ const config = {
     gist: "",
   },
   customComponents: {
-    botAvatar: (props) => <div style={{display:'block'}}><div style={{width:'40px',height:'40px',borderRadius:'50%',marginRight:'1.2rem',backgroundColor:'#d8d8d8',display:'flex',justifyContent:'center',alignItems:'center'}}><img src={botimg} style={{width:'15px',height:'15px'}}/></div></div>
+    botAvatar: (props) => <div style={{display:'block'}}><div style={{width:'40px',height:'40px',borderRadius:'50%',marginRight:'1.2rem',backgroundColor:'#d8d8d8',display:'flex',justifyContent:'center',alignItems:'center'}}><img src={botimg} alt="" style={{width:'15px',height:'15px'}}/></div></div>
   },
   widgets: [
     {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Comment, Avatar } from 'antd'
+import { Comment, Avatar , Button } from 'antd'
 import { useSelector , shallowEqual} from 'react-redux'
 import LikeDislikes from './LikeDislikes'
 import Axios from 'axios';
@@ -67,7 +67,7 @@ function SingleComment(props) {
                 
                 />
                 <br /><br />
-                <input type="button" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit} value="작성" />
+                <Button type="primary" style={{ width:'20%' ,height:'52px'} } onClick={check ? onLogin:onSubmit}  >작성</Button>
 
             </form>
             }

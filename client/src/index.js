@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-import Test from './components/views/WidGetPage/Test'
+
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
 ReactDOM.render(
@@ -28,7 +28,6 @@ ReactDOM.render(
         <BrowserRouter>
             <App />
         </BrowserRouter>
-        <Test />
     </Provider>
     , document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change

@@ -5,7 +5,7 @@ import actionProvider from "./ActionProviderDocs";
 import messageParser from "./MessageParser";
 import chatimg from "./img/bot.png"
 import $ from "jquery"
-function Test() {
+function ChatbotPage() {
   $(".react-chatbot-kit-chat-input").attr({"placeholder":"질문을 입력해주세요."});
   const [showBot, toggleBot] = useState(false);
   const [inSet, setinSet] = useState("")
@@ -46,4 +46,4 @@ function Test() {
     </div>
   );
 }
-export default Test
+export default ChatbotPage

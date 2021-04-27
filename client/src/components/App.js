@@ -20,7 +20,8 @@ import DFPage from './views/DFPage/DFPage'
 import DFDetailPage  from './views/DFDetailPage/DFDetailPage'
 import ItemSearchPage from './views/ItemSearchPage/ItemSearchPage'
 import ItemDetailPage from './views/ItemDetailPage/ItemDetailPage'
-import Test from './views/WidGetPage/Test'
+import ChatbotPage from './views/WidGetPage/ChatbotPage';
+import CalendarPage from './views/CalendarPage/CalendarPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -52,9 +53,11 @@ function App() {
           <Route exact path="/dunfa/itemsearch" component={Auth(ItemSearchPage, null)} />
           <Route exact path="/dunfa/itemdetail/:itemId" component={Auth(ItemDetailPage, null)} />
           <Route exact path="/dunfa/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
-      
+          {/* 캘린더 클론 */}
+          <Route exact path="/calendar" component={Auth(CalendarPage, null)} />
         </Switch>
-        <Test/>
+        {/* 챗봇 클론 */}
+        <ChatbotPage/>
       </div>
      
       <Footer />

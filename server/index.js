@@ -2,11 +2,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require('cors')
-const http = require('http')
-const https = require('https')
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const fs = require('fs')
 
 const config = require("./config/key");
 
@@ -24,12 +22,9 @@ const connect = mongoose.connect(config.mongoURI,
   })
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
-const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/dunchang.xyz/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/dunchang.xyz/chain.pem")
-};
+
 app.use(cors())
-app.use(express.static('../client/public'));
+
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -66,8 +61,6 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 5000
 
-// app.listen(port, () => {
-//   console.log(`Server Listening on ${port}`)
-// });
-http.createServer(app).listen(port);
-https.createServer(options, app).listen(443);
+app.listen(port, () => {
+  console.log(`Server Listening on ${port}`)
+});

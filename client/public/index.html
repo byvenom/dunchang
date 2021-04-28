@@ -7,16 +7,25 @@
     <meta name="theme-color" content="#000000" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript"> // F12 버튼 방지 
+    status="";
     $(document).ready(function(){ $(document).bind('keydown',function(e){ 
-    if ( e.keyCode == 123 || (e.ctrlKey &&e.shiftKey && e.keyCode == 73)) { 
-    e.preventDefault(); 
+    if ( e.keyCode == 123) {
+    status="F12 방지 ^^*";
+    e.preventDefault();
+    alert(status); 
     e.returnValue = false; 
-  } 
+  } else if (e.ctrlKey &&e.shiftKey && e.keyCode == 73){
+    status="컨쉽아이 방지 ^^*";
+    e.preventDefault(); 
+    alert(status); 
+    e.returnValue = false; 
+  }
 }); }); // 우측 클릭 방지 
     document.onmousedown=disableclick; 
-    status="Right click is not available.";
+
      function disableclick(event){ 
        if (event.button==2) { 
+        status="우클릭 방지 ^^*";
          alert(status); 
          return false; 
          } 

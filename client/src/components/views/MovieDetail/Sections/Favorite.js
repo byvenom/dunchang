@@ -1,10 +1,10 @@
 import Axios from 'axios'
-
+import { useSelector,shallowEqual} from 'react-redux'
 import React,{useEffect,useState} from 'react'
-
-
+import {Button} from 'antd'
+import {withRouter} from 'react-router-dom'
 function Favorite(props) {
-
+    const check = useSelector(state =>state.user.userData?state.user.userData.error:"",shallowEqual);
     const movieId = props.movieId
     const userFrom = props.userFrom
     const movieTitle = props.movieInfo.original_title
@@ -42,7 +42,10 @@ function Favorite(props) {
 
 
     }, [])
-
+    const onLogin = () => {
+        alert('로그인이 필요합니다.');
+        props.history.push('/login')
+    }
     const FavoriteClick = () => {
         
         if(Favorited){
@@ -71,9 +74,9 @@ function Favorite(props) {
     return (
         
         <div>
-            <button onClick={FavoriteClick}>{Favorited?"제거" : "담기"} {FavoriteNumber}</button>
+            <Button type="primary" onClick={check ? onLogin:FavoriteClick}>{Favorited?"제거" : "담기"} {FavoriteNumber}</Button>
         </div>
     )
 }
 
-export default Favorite
+export default withRouter(Favorite)

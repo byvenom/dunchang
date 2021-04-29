@@ -22,6 +22,7 @@ import ItemSearchPage from './views/ItemSearchPage/ItemSearchPage'
 import ItemDetailPage from './views/ItemDetailPage/ItemDetailPage'
 import ChatbotPage from './views/WidGetPage/ChatbotPage';
 import CalendarPage from './views/CalendarPage/CalendarPage'
+import ChatPage from './views/ChatPage/ChatPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -48,6 +49,8 @@ function App() {
           <Route exact path="/chart" component={Auth(ChartPage, null)} />
           <Route exact path="/chart/upload" component={Auth(UploadChartPage, true)} />
           <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
+          {/* 채팅 클론 */}
+          <Route exact path="/chat" component={Auth(ChatPage, true)} />
           {/* DF 클론 */}
           <Route exact path="/dunfa" component={Auth(DFPage, null)} />
           <Route exact path="/dunfa/itemsearch" component={Auth(ItemSearchPage, null)} />

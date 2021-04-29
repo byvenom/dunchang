@@ -7,7 +7,8 @@ export const API_KEY = '57b3c41da2e512267ec2705174a90a21';
 
 export const IMAGE_BASE_URL ='https://image.tmdb.org/t/p/';                  
 
-
+//Chat routes
+export const CHAT_SERVER = '/api/chat';
 //DF
 
 export const DF_URL = 'https://api.neople.co.kr/df/';

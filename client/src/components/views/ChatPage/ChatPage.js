@@ -8,26 +8,37 @@ import { getChats, afterPostMessage } from "../../../_actions/chat_actions"
 import ChatCard from "./Sections/ChatCard"
 import Dropzone from 'react-dropzone';
 import Axios from 'axios';
+
 var os = require('os');
 export class ChatPage extends Component {
     state = {
         chatMessage: "",
-    }
 
+    }
+    
     componentDidMount() {
+       
+
         let server = `http://${os.hostname()}:5000`;
 
         this.props.dispatch(getChats());
-
+        
         this.socket = io(server);
-
+        
         this.socket.on("Output Chat Message", messageFromBackEnd => {
          
             this.props.dispatch(afterPostMessage(messageFromBackEnd));
+            
         })
+        setTimeout(() => {
+            this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+        }, 2000);
+  
+        
     }
-
+    
     componentDidUpdate() {
+        
         this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -119,7 +130,7 @@ export class ChatPage extends Component {
         });
         this.setState({ chatMessage: "" })
     }
-
+    
     render() {
         return (
             <React.Fragment>
@@ -128,9 +139,9 @@ export class ChatPage extends Component {
                 </div>
 
                 <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                <Dropzone onDrop={this.onDrop} clickAble="false">
+                <Dropzone onDrop={this.onDrop} >
                 {({ getRootProps, getInputProps }) => (
-                    <div {...getRootProps()} className="infinite-container" style={{ height: '500px', overflowY: 'scroll' }}>
+                    <div {...getRootProps()} className="infinite-container" style={{ maxHeight: '500px', overflowY: 'scroll' }}>
                     <input {...getInputProps()}  disabled/>
                       
                     
@@ -142,6 +153,7 @@ export class ChatPage extends Component {
                         <div
                             ref={el => {
                                 this.messagesEnd = el;
+                                
                             }}
                             style={{ float: "left", clear: "both" }}
                         />

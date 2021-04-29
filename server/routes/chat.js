@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { Chat } = require("../models/Chat");
-const {auth} = require("../middleware/auth")
 
-router.get("/getChats",auth,async (req, res) => {
+
+router.get("/getChats",async (req, res) => {
     await Chat.find()
         .populate("sender")
         .exec((err, chats) => {

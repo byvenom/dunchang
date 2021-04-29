@@ -50,7 +50,7 @@ function App() {
           <Route exact path="/chart/upload" component={Auth(UploadChartPage, true)} />
           <Route exact path="/chart/detail/:chartId" component={Auth(ChartDetailPage, null)} />
           {/* 채팅 클론 */}
-          <Route exact path="/chat" component={Auth(ChatPage, true)} />
+          <Route exact path="/chat" component={Auth(ChatPage, null)} />
           {/* DF 클론 */}
           <Route exact path="/dunfa" component={Auth(DFPage, null)} />
           <Route exact path="/dunfa/itemsearch" component={Auth(ItemSearchPage, null)} />

@@ -86,6 +86,7 @@ export class ChatPage extends Component {
                 }
             })
     }
+    
 
 
     submitChatMessage = (e) => {
@@ -127,7 +128,14 @@ export class ChatPage extends Component {
                 </div>
 
                 <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <div className="infinite-container" style={{ height: '500px', overflowY: 'scroll' }}>
+                <Dropzone onDrop={this.onDrop} clickAble="false">
+                {({ getRootProps, getInputProps }) => (
+                    <div {...getRootProps()} className="infinite-container" style={{ height: '500px', overflowY: 'scroll' }}>
+                    <input {...getInputProps()}  disabled/>
+                      
+                    
+                
+                   
                         {this.props.chats && (
                             this.renderCards()
                         )}
@@ -137,8 +145,9 @@ export class ChatPage extends Component {
                             }}
                             style={{ float: "left", clear: "both" }}
                         />
-                    </div>
-
+                       
+                    </div>)}
+                    </Dropzone>
                     <Row >
                         <Form layout="inline" onSubmit={this.submitChatMessage}>
                             <Col span={18}>

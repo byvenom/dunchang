@@ -48,7 +48,10 @@ export class ChatPage extends Component {
 
 
         if (this.props.user.userData && !this.props.user.userData.isAuth) {
-            return alert('Please Log in first');
+            return (
+                alert('로그인이 필요합니다.')
+                ,this.props.history.push('/login')
+            );
         }
 
 
@@ -89,7 +92,10 @@ export class ChatPage extends Component {
         e.preventDefault();
 
         if (this.props.user.userData && !this.props.user.userData.isAuth) {
-            return alert('Please Log in first');
+            return (
+                alert('로그인이 필요합니다.')
+                ,this.props.history.push('/login')
+            );
         }
 
 
@@ -122,7 +128,7 @@ export class ChatPage extends Component {
 
                 <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                     <div className="infinite-container" style={{ height: '500px', overflowY: 'scroll' }}>
-                        {this.props.chats &&this.props.user.userData&& (
+                        {this.props.chats && (
                             this.renderCards()
                         )}
                         <div

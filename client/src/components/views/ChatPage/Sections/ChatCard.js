@@ -1,6 +1,7 @@
 import React from "react";
 import moment from 'moment';
 import { Comment, Tooltip, Avatar } from 'antd';
+import 'moment/locale/ko'
 var os = require('os');
 function ChatCard(props) {
   

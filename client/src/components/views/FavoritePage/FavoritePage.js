@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React ,{useEffect,useState} from 'react'
-import {Popover} from 'antd'
+import {Popover, Button} from 'antd'
 import './favorite.css'
 import { IMAGE_BASE_URL } from '../../Config'
 
@@ -52,7 +52,7 @@ function FavoritePage() {
             <td><a href={`/movie/detail/${favorite.movieId}`}>{favorite.movieTitle}</a></td>
             </Popover>
             <td>{favorite.movieRunTime} 분</td>
-            <td><button onClick={() => removeFavorite(favorite.movieId, favorite.userFrom)}>삭제</button></td>
+            <td><Button type="danger" onClick={() => removeFavorite(favorite.movieId, favorite.userFrom)}>X</Button></td>
         </tr>
     })
     return (

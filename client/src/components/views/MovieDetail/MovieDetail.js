@@ -5,7 +5,7 @@ import MainImage from '../Commons/MainImage'
 import MovieInfo from './Sections/MovieInfo'
 import GridCards from '../Commons/GridCards'
 import Favorite from './Sections/Favorite'
-import { Row} from 'antd'
+import { Row , Button} from 'antd'
 import Axios from 'axios'
 import Comments from '../VideoDetailPage/Sections/Comment'
 import LikeDislikes from '../VideoDetailPage/Sections/LikeDislikes';
@@ -88,7 +88,7 @@ function MovieDetail(props) {
             {/* Actors Grid*/}
 
             <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                <button onClick={toggleActorView}>출연진</button>
+                <Button type="primary" onClick={toggleActorView}>출연진</Button>
 
             </div>
             {ActorToggle &&

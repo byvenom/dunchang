@@ -15,13 +15,14 @@
     if ( e.keyCode == 123) {
     status="F12 방지 ^^*";
     e.preventDefault();
-    alert(status); 
     e.returnValue = false; 
+    alert(status); 
+   
   } else if (e.ctrlKey &&e.shiftKey && e.keyCode == 73){
     status="컨쉽아이 방지 ^^*";
     e.preventDefault(); 
+    e.returnValue = false;
     alert(status); 
-    e.returnValue = false; 
   }
   // else if ( e.keyCode == 93){
   //   status="우클릭 방지 ^^*";

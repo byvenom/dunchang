@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import Axios from 'axios';
 import {useSelector} from 'react-redux';
 import os from 'os';
+import {Line} from 'rc-progress';
 
 
 const {TextArea} = Input;
@@ -31,7 +32,9 @@ function VideoUploadPage(props) {
     const [FilePath, setFilePath] = useState("")
     const [Duration, setDuration] = useState("")
     const [ThumbnailPath, setThumbnailPath] = useState("")
-
+    const [ThumbnailArray, setThumbnailArray] = useState([])
+    const [Percent, setPercent] = useState(0)
+    const [UploadChk, setUploadChk] = useState(false)
     const onTitleChange = (e) => {
         setVideoTitle(e.currentTarget.value)
     }
@@ -45,10 +48,24 @@ function VideoUploadPage(props) {
         setCategory(e.currentTarget.value)
     }
 
+    const onSelectThumbnail = (number) => {
+        setThumbnailPath(ThumbnailArray[number])
+    }
     const onDrop = (files) => {
+        setUploadChk(true);
         let formData = new FormData();
         const config = {
-            header: {'content-type': 'multipart/form-data'}
+            header: {'content-type': 'multipart/form-data'},
+            onUploadProgress: ProgressEvent => {
+                var percent = Math.round(ProgressEvent.loaded * 100 / ProgressEvent.total);
+                if(percent >=100){
+                    
+                    setPercent(100);
+                    setTimeout(()=> {setUploadChk(false)} , 3000)
+                }else{
+                    setPercent(percent);
+                }
+            }
         }
         formData.append("file",files[0])
 
@@ -65,22 +82,33 @@ function VideoUploadPage(props) {
                 Axios.post('/api/video/thumbnail', variable)
                 .then(response => {
                     if(response.data.success){
+                        
                         setDuration(response.data.fileDuration)
-                        setThumbnailPath(response.data.url)
-
-
+                        setThumbnailArray(response.data.url)
+                        
 
                     } else{
                         alert('썸네일 생성에 실패 했습니다.')
+                        setPercent(0);
                     }
                 })
             }else {
                 alert('확장자가 mp4인 파일만 가능합니다.')
+                setPercent(0);
             }
         })
     }
     const onSubmit = (e) =>{
+     
         e.preventDefault();
+        if(FilePath ===""){
+            
+            return alert('동영상을 업로드해주세요.');
+        }
+        if(ThumbnailPath ===""){
+            
+            return alert('섬네일을 선택해주세요.');
+        }
         const variables = {
             writer: user.userData._id,
             title: VideoTitle,
@@ -90,6 +118,7 @@ function VideoUploadPage(props) {
             category: Category,
             duration: Duration,
             thumbnail: ThumbnailPath,
+            thumbnailArray:ThumbnailArray
 
         }
         Axios.post('/api/video/uploadVideo',variables)
@@ -111,12 +140,15 @@ function VideoUploadPage(props) {
                 <Title level={2}>영상 업로드</Title>
             </div> 
                 <Form onSubmit={onSubmit}>
-                    <div style={{ display:'flex' , justifyContent:'space-between'}}>
+                {UploadChk &&
+                    <Line percent={Percent} strokeWidth='1' strokeColor='#2db7f5' strokeLinecap='square' />
+                }
+                    <div style={{display:'flex' ,justifyContent:'space-between'}}>
                         {/* Drop zone */}
                         <Dropzone
                             onDrop={onDrop}
                             multiple={false}
-                            maxSize={100000000}
+                            maxSize={1000000000}
                             >
                             {({ getRootProps,getInputProps}) =>(
                                 <div style={{width: '300px', height:'240px', border:'1px solid lightgray', display:'flex',
@@ -126,16 +158,35 @@ function VideoUploadPage(props) {
 
                                 </div>
                             )}
+                            
                             </Dropzone>
+                            
                         {/* Thumnail */}
-                                    
-                    
                         {ThumbnailPath &&
-                            <div>
-                                <img src={`http://${os.hostname()}:5000/${ThumbnailPath}`} alt="thumbnail" />
-                            </div>
+                                <div>
+                                    <img src={`http://${os.hostname()}:5000/${ThumbnailPath}`}  />
+                                </div>
                         }
                     </div>
+                    <br />
+                    <br />
+                    {ThumbnailArray &&
+                        ThumbnailArray.map((Thum,i)=>(
+                        
+                            
+                            <img src={`http://${os.hostname()}:5000/${Thum}`} alt="thumbnail" style={{width:'128px',height:'120px',border:'1px solid #d9d9d9',cursor:'pointer',padding:'10px'}} key={i} onClick={()=>onSelectThumbnail(i)}/>
+                        
+          
+                        ))
+                        
+                        }
+                        <br/>
+                        
+                        {ThumbnailArray.length>0 &&
+                            
+                          <span style={{display:'flex',
+                          alignItems:'center', justifyContent:'center'}}><b style={{fontSize:'24px'}}>썸네일 이미지를 선택해주세요</b></span>  
+                        }
             <br />
             <br />
             <label>제목</label>

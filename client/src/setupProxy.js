@@ -15,6 +15,15 @@ module.exports = function (app) {
         changeOrigin: true,
         })
     );
+    app.use(
+        '/dart',
+        createProxyMiddleware({
+        target: 'https://opendart.fss.or.kr',
+        changeOrigin: true,
+        })
+    );
+   
+  
    
   
 };

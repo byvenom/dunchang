@@ -1,0 +1,34 @@
+{
+ "keys": {
+   "accessKey": "4E4C478623F4117437D9C082F79F47A00AB9D4F8",
+   "secretKey": "0470972C24A1EE4EE8EED1BED7B4C06785E82B19"
+ },
+ "applicationId": "6100aa5e9a19d00019ef887a",
+ "params": [
+     {"name": "whitespaceRemoval"},
+     {"name": "functionReordering"},
+     {"name": "propertyKeysObfuscation"},
+     {"name": "regexObfuscation"},
+     {"name": "booleanToAnything"},
+     {"name": "stringEncoding"},
+     {"name": "globalVariableIndirection"}
+ ],
+ "filesSrc": [
+   "./build/**/**/*.html",
+   "./build/**/**/*.js"
+ ],
+  "filesDest": "./",
+  "areSubscribersOrdered": false,
+  "applicationTypes": {
+    "webBrowserApp": false,
+    "desktopApp": false,
+    "serverApp": false,
+    "hybridMobileApp": false,
+    "javascriptNativeApp": false,
+    "html5GameApp": false
+  },
+  "useRecommendedOrder": true,
+  "jscramblerVersion": "7.1",
+  "tolerateMinification": true
+ 
+}

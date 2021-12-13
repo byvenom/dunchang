@@ -23,6 +23,7 @@ import ItemDetailPage from './views/ItemDetailPage/ItemDetailPage'
 import ChatbotPage from './views/WidGetPage/ChatbotPage';
 import CalendarPage from './views/CalendarPage/CalendarPage'
 import ChatPage from './views/ChatPage/ChatPage'
+import JusikPage from './views/JusikPage/JusikPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -58,6 +59,9 @@ function App() {
           <Route exact path="/dunfa/detail/:serverId/:characterId" component={Auth(DFDetailPage, null)} />
           {/* 캘린더 클론 */}
           <Route exact path="/calendar" component={Auth(CalendarPage, null)} />
+          {/* 주식 */}
+          <Route exact path="/jusik" component={Auth( JusikPage, null)} />
+         
         </Switch>
         {/* 챗봇 클론 */}
         <ChatbotPage/>

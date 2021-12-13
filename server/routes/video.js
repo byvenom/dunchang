@@ -5,6 +5,7 @@ const { auth } = require("../middleware/auth");
 const multer = require("multer");
 var ffmpeg = require("fluent-ffmpeg");
 const {Subscriber} = require('../models/Subscriber');
+const fs = require('fs');
 
 
 
@@ -90,6 +91,17 @@ router.post('/uploadVideo', (req,res) => {
            if(err) return res.json({success: false, err})
            res.status(200).json({success: true})
        })
+       //썸네일 아닌 이미지 삭제 2021-12-13 추가
+
+       const delArr = req.body.thumbnailArray.filter(value=> value !==req.body.thumbnail);
+
+       for(let i=0;i<delArr.length;i++){
+           fs.unlinkSync(delArr[i]);
+       }
+       
+
+       
+
        
         });
 router.post('/getSubscriptionVideos', (req,res) => {
@@ -122,7 +134,7 @@ router.post('/thumbnail', (req,res) => {
     
         // 썸네일 생성 하고 비디오 런닝타임도 가져오기
 
-        let filepath =""
+        let filePath =[];
         let fileDuration = ""
 
         // 비디오 정보 가져오기
@@ -135,9 +147,11 @@ router.post('/thumbnail', (req,res) => {
         // 썸네일 생성
         ffmpeg(req.body.url)
         .on('filenames', function (filenames) {
-
-
-            filePath = "uploads/thumbnails/" + filenames[0]
+           
+            filenames.map((filename,i)=>{
+                filePath.push("uploads/thumbnails/" + filenames[i])
+            })
+            
         })
         .on('end', function () {
        
@@ -148,7 +162,7 @@ router.post('/thumbnail', (req,res) => {
             return res.json({ success: false, err});
         })
         .screenshots({
-            count: 3,
+            count: 10,
             folder: 'uploads/thumbnails',
             size: '320x240',
             filename: 'thumbnail-%b.png'

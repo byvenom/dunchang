@@ -153,9 +153,8 @@ router.post('/thumbnail', (req,res) => {
             })
             
         })
-        .on('end', function () {
-       
-            return res.json({ success: true, url: filePath, fileDuration: fileDuration});
+        .on('progress', function(progress){
+            if(progress.percent>0)return res.json({success: true, url: filePath, fileDuration: fileDuration});
         })
         .on('error', function(err) {
          

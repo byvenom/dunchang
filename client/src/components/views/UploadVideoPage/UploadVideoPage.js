@@ -24,6 +24,7 @@ const CategoryOptions = [
 ]
 
 function VideoUploadPage(props) {
+    let hide ="";
     const user = useSelector(state => state.user);
     const [VideoTitle, setVideoTitle] = useState("")
     const [Description, setDescription] = useState("")
@@ -60,8 +61,9 @@ function VideoUploadPage(props) {
                 var percent = Math.round(ProgressEvent.loaded * 100 / ProgressEvent.total);
                 if(percent >=100){
                     
-                    setPercent(100);
-                    setTimeout(()=> {setUploadChk(false)} , 3000)
+                    setPercent(95);
+                    hide = message.loading("썸네일 준비중입니다. 잠시만 기다려주세요.",0)
+                   
                 }else{
                     setPercent(percent);
                 }
@@ -83,11 +85,14 @@ function VideoUploadPage(props) {
                 .then(response => {
                     if(response.data.success){
                         
+                        
                         setDuration(response.data.fileDuration)
                         setThumbnailArray(response.data.url)
-                        
+                        setPercent(Percent+response.data.progress);
+                        setTimeout(hide,1500);
+                        setTimeout(()=> {setUploadChk(false)} , 1500);
 
-                    } else{
+                    }else if(!response.data.success){
                         alert('썸네일 생성에 실패 했습니다.')
                         setPercent(0);
                     }

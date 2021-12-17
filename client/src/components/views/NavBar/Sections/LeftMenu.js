@@ -8,9 +8,9 @@ function LeftMenu(props) {
   
   return (
     <Menu mode={props.mode}>
-    <SubMenu title={<span><a href="/" style={{textDecoration:'inherit' , color:'inherit'}}>영상</a></span>}>
+    <SubMenu title={<span><a href="/LandingPage" style={{textDecoration:'inherit' , color:'inherit'}}>영상</a></span>}>
     <Menu.Item key="home">
-      <a href="/">전체영상</a>
+      <a href="/LandingPage">전체영상</a>
     </Menu.Item>
     <Menu.Item key="subscription">
       <a href="/video/subscription">구독영상</a>

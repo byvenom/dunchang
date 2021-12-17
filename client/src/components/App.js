@@ -24,6 +24,7 @@ import ChatbotPage from './views/WidGetPage/ChatbotPage';
 import CalendarPage from './views/CalendarPage/CalendarPage'
 import ChatPage from './views/ChatPage/ChatPage'
 import JusikPage from './views/JusikPage/JusikPage'
+import StartPage from './views/StratPage/StartPage'
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -36,8 +37,9 @@ function App() {
       <NavBar />
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
+          <Route exact path="/" component={Auth(StartPage, null)} />
           {/* 유튜브 클론 */}
-          <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route exact path="/LandingPage" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />

@@ -131,7 +131,7 @@ function VideoUploadPage(props) {
             if(response.data.success){
                 message.success('성공적으로 업로드를 했습니다.')
                 setTimeout(() => {
-                    props.history.push('/')
+                    props.history.push('/LandingPage')
                 }, 3000);
             }else{
                 alert('비디오 업로드에 실패 하였습니다.')

@@ -39,6 +39,6 @@ export const GradeOptions =[
 
 // JUSIK
 
-export const JUSIK_KEY = "74b7f8732a9fb83c2187f5bb5cc82422cb17ed81";
+// export const JUSIK_KEY = "74b7f8732a9fb83c2187f5bb5cc82422cb17ed81";
 
-export const JUSIK_URL = "https://opendart/fss.or.kr/api/"
+// export const JUSIK_URL = "https://opendart/fss.or.kr/api/"

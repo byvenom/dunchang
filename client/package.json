@@ -67,6 +67,5 @@
   "devDependencies": {
     "http-proxy-middleware": "^1.0.3",
     "jscrambler": "^5.5.32"
-  },
-  "proxy": "https://opendart.fss.or.kr"
+  }
 }

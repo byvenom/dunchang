@@ -28,18 +28,18 @@ export class ChatPage extends Component {
         this.socket.on("Output Chat Message", messageFromBackEnd => {
          
             this.props.dispatch(afterPostMessage(messageFromBackEnd));
-            
+           
         })
-        setTimeout(() => {
-            this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-        }, 2000);
+       
   
         
     }
     
     componentDidUpdate() {
         
-        this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            this.messagesEnd.scrollIntoView({ behavior: 'smooth' ,block: "end"});
+        }, 500);
     }
 
     hanleSearchChange = (e) => {
@@ -96,6 +96,7 @@ export class ChatPage extends Component {
                     });
                 }
             })
+       
     }
     
 
@@ -141,7 +142,7 @@ export class ChatPage extends Component {
                 <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                 <Dropzone onDrop={this.onDrop} >
                 {({ getRootProps, getInputProps }) => (
-                    <div {...getRootProps()} className="infinite-container" style={{ maxHeight: '500px', overflowY: 'scroll' }}>
+                    <div {...getRootProps()} className="infinite-container" style={{ maxHeight: '500px', overflowY: 'scroll' ,clear:'both'}}>
                     <input {...getInputProps()}  disabled/>
                       
                     
@@ -208,4 +209,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(ChatPage);
+export default connect(mapStateToProps)(React.memo(ChatPage));

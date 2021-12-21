@@ -4,7 +4,7 @@ import { Comment, Tooltip, Avatar } from 'antd';
 import 'moment/locale/ko'
 var os = require('os');
 function ChatCard(props) {
-  
+    
     return (
         <div style={{ width: '100%' }}>
             <Comment
@@ -15,7 +15,7 @@ function ChatCard(props) {
                     />
                 }
                 content={
-                    props.message.substring(0, 8) === 'uploads\\' ?
+                    props.message.substring(0, 7) == 'uploads' ?
                         // this will be either video or image 
 
                         props.message.substring(props.message.length - 3, props.message.length) === 'mp4' ?

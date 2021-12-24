@@ -45,4 +45,4 @@ function ChatCard(props) {
     )
 }
 
-export default ChatCard;
+export default React.memo(ChatCard);

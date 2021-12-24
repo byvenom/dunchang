@@ -39,7 +39,7 @@ export class ChatPage extends Component {
         
         setTimeout(() => {
             this.messagesEnd.scrollIntoView({ behavior: 'smooth' ,block: "end"});
-        }, 500);
+        }, 100);
     }
 
     hanleSearchChange = (e) => {
@@ -78,7 +78,7 @@ export class ChatPage extends Component {
         Axios.post('/api/chat/uploadfiles', formData, config)
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.url);
+                    
                     let chatMessage = response.data.url;
                     let userId = this.props.user.userData._id
                     let userName = this.props.user.userData.name;

@@ -22,9 +22,9 @@ var storage = multer.diskStorage ({
 var upload = multer({ storage: storage,
     fileFilter: (req,file,cb) => {
         const ext = file.originalname.split(".")[1]
-        console.log("ext",ext)
+     
         if(ext!=='mp4'){
-            console.log("mp4 only")
+            
             return cb(new Error('only mp4'),false);
         }
         cb(null, true);

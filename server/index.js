@@ -82,7 +82,7 @@ io.on("connection", socket => {
           let chat = new Chat({ message: msg.chatMessage, sender:msg.userId, type: msg.type })
 
           chat.save((err, doc) => {
-            console.log(doc)
+            
             if(err) return res.json({ success: false, err })
 
             Chat.find({ "_id": doc._id })

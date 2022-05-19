@@ -66,7 +66,7 @@ function DFPage() {
                 <div align="center">
                 <span style={{ fontSize:"16px" , fontWeight:"bold"}}>{characterNames}</span>
                 <br/>
-                <span style={{paddingTop:"5px"}}>LV.{levels}/{jobGrowNames}/{ServerOptions.find(server => server.value===serverIds).label}</span>
+                <span style={{paddingTop:"5px"}}>LV.{levels}/<span style={{color:'#ad7d52'}}>{jobGrowNames}</span>/{ServerOptions.find(server => server.value===serverIds).label}</span>
                 </div>
                 </Col>
                 </React.Fragment>

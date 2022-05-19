@@ -5,6 +5,7 @@ import './DF.css'
 import moment from 'moment';
 import backimg from './img/back_image.png'
 import Axios from 'axios';
+import status_fame from './img/icon_status_fame.png'
 const { Title } = Typography;
 const {TabPane} = Tabs;
 
@@ -29,6 +30,7 @@ function DFDetailPage(props) {
     const [EndDate, setEndDate] = useState("")
     const [EndNumber, setEndNumber] = useState(0)
     const [StartNumber, setStartNumber] = useState(30)
+    const [Fame,setFame] = useState("");
     useEffect(() => {
         const api = `/df/servers/${serverId}/characters/${characterId}`
         setStartDate(moment(nowTime).subtract(StartNumber,'d').format('YYYY-MM-DD HH:mm'))
@@ -63,7 +65,7 @@ function DFDetailPage(props) {
                setTimelineRow(response.timeline.rows)
             }else if(num===3){
                 setStatusRow(response.status)
-               
+                setFame(response.status[16].value)
             }
             else if(num===4&&response.equipment){
               setEquipment(response.equipment)
@@ -112,8 +114,11 @@ function DFDetailPage(props) {
                 <Title level={2} ><a href="/dunfa">DUNCHANG</a></Title>
         </div> 
         <div align="center" style={{ position: 'relative'}}>
+                <span><img src={status_fame} width="18" height="16" style={{marginRight:"5px"}} /><span style={{color:'#ad7d52',fontWeight:'500'}}>{Fame}</span></span>
+                <br/>
+                <br/>
                 <img style={{width: '300px' ,backgroundImage: `url("${backimg}")`,backgroundSize:'cover',backgroundPosition:'center'}} src={`https://img-api.neople.co.kr/df/servers/${serverId}/characters/${characterId}?zoom=3`} alt=""  /><br/>
-                <span>LV.{Basic.level}/{Basic.jobGrowName}/{ServerOptions.find(server => server.value===serverId).label}</span><br/>
+                <span>LV.{Basic.level}/<span style={{color:'#ad7d52'}}>{Basic.jobGrowName}</span>/{ServerOptions.find(server => server.value===serverId).label}</span><br/>
                 <span>길드 : {Basic.guildName}</span> <br/>
                 <span>모험단 : {Basic.adventureName}</span><br/>
                 <span style={{fontSize:'16px',fontWeight:'bold'}}>{Basic.characterName}</span>
@@ -207,7 +212,9 @@ function DFDetailPage(props) {
                             
                         }
                     </td>
-                    <td style={{width:'30%',textAlign:'right'}}><span>{row.reinforce !==0 ? "+"+row.reinforce+(row.amplificationName!==null? "증폭":(row.remodelInfo?"개조":"강화")):""}</span><span>{row.refine !==0 ? `(${row.refine})`:""}</span>
+                    <td style={{width:'30%',textAlign:'right'}}>{row.reinforce !==0 && row.remodelInfo ?<span style={{color:'red'}}>{row.reinforce !==0 ? "+"+row.reinforce+(row.amplificationName!==null? "증폭":(row.remodelInfo?"개조":"강화")):""}</span> : 
+                    row.reinforce !==0 && row.amplificationName!==null ?<span style={{color:'#FF00FF'}}>{row.reinforce !==0 ? "+"+row.reinforce+(row.amplificationName!==null? "증폭":(row.remodelInfo?"개조":"강화")):""}</span>:
+                    <span style={{color:'#68D5ED'}}>{row.reinforce !==0 ? "+"+row.reinforce+(row.amplificationName!==null? "증폭":(row.remodelInfo?"개조":"강화")):""}</span>}<span style={{color:"#B36BFF"}}>{row.refine !==0 ? `(${row.refine})`:""}</span>
                     
                     </td>
                    

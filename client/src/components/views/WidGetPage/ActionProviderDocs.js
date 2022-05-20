@@ -25,6 +25,96 @@ class ActionProviderDocs {
       );
       this.addMessageToBotState(message);
       }
+      else if(check===3){
+        const message = this.createChatBotMessage(
+        "동하사진정보",
+        {
+          widget: "hiddenPhotoLinks3",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===4){
+        const message = this.createChatBotMessage(
+        "동율사진정보",
+        {
+          widget: "hiddenPhotoLinks4",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===5){
+        const message = this.createChatBotMessage(
+        "대한사진정보",
+        {
+          widget: "hiddenPhotoLinks5",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===6){
+        const message = this.createChatBotMessage(
+        "승현사진정보",
+        {
+          widget: "hiddenPhotoLinks6",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===7){
+        const message = this.createChatBotMessage(
+        "다솔사진정보",
+        {
+          widget: "hiddenPhotoLinks7",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===8){
+        const message = this.createChatBotMessage(
+        "종영사진정보",
+        {
+          widget: "hiddenPhotoLinks8",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===9){
+        const message = this.createChatBotMessage(
+        "익선사진정보",
+        {
+          widget: "hiddenPhotoLinks9",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===10){
+        const message = this.createChatBotMessage(
+        "하빈사진정보",
+        {
+          widget: "hiddenPhotoLinks10",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===11){
+        const message = this.createChatBotMessage(
+        "병진사진정보",
+        {
+          widget: "hiddenPhotoLinks11",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
+      else if(check===12){
+        const message = this.createChatBotMessage(
+        "방울사진정보",
+        {
+          widget: "hiddenPhotoLinks12",
+        }
+      );
+      this.addMessageToBotState(message);
+      }
       
     };
     handlePhotoList = () => {

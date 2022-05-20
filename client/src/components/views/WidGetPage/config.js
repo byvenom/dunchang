@@ -124,6 +124,136 @@ const config = {
         ],
       },
     },
+    {
+      widgetName: "hiddenPhotoLinks3",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "go.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks4",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "yul.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks5",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "de.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks6",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "win.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks7",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "da.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks8",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "jong.png",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks9",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "ik.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks10",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "ha.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks11",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "bottle.png",
+            id: 1,
+          }
+        ],
+      },
+    },
+    {
+      widgetName: "hiddenPhotoLinks12",
+      widgetFunc: (props) => <PhotoList {...props} />,
+      props: {
+        options: [
+          {
+            url:
+              "bang.jpg",
+            id: 1,
+          }
+        ],
+      },
+    },
   ],
 };
 

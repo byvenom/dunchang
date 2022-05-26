@@ -72,6 +72,7 @@ function DFDetailPage(props) {
             }
             else if(num===4&&response.equipment){
               setEquipment(response.equipment)
+                console.log(response.equipment);
             }
             else if (num ===5){
                 if(response.avatar){
@@ -88,7 +89,6 @@ function DFDetailPage(props) {
                 setSkillBuff_c(response.skill.buff.creature)
             }else if(num ===9){
                 setTalisman(response.talismans)
-                console.log(response.talismans);
             }
             
         })
@@ -209,7 +209,8 @@ function DFDetailPage(props) {
                
                     <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px" alt=""/></td>
                     <td style={{width:'64%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
-                        {row.enchant.status.map((status,i) => (
+                        
+                        {row.enchant &&!row.enchant.reinforceSkill && row.enchant.status.map((status,i) => (
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
                         ))}
                         {

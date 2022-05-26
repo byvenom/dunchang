@@ -32,6 +32,7 @@ function DFDetailPage(props) {
     const [StartNumber, setStartNumber] = useState(30)
     const [Fame,setFame] = useState("");
     const [Talisman,setTalisman] = useState([])
+    const [Explain,setExplain] = useState("")
     useEffect(() => {
         const api = `/df/servers/${serverId}/characters/${characterId}`
         setStartDate(moment(nowTime).subtract(StartNumber,'d').format('YYYY-MM-DD HH:mm'))
@@ -72,7 +73,8 @@ function DFDetailPage(props) {
             }
             else if(num===4&&response.equipment){
               setEquipment(response.equipment)
-                console.log(response.equipment);
+              console.log(response.equipment)
+              if(response.equipment[3].enchant)setExplain(response.equipment[3].enchant.explain)
             }
             else if (num ===5){
                 if(response.avatar){
@@ -210,9 +212,9 @@ function DFDetailPage(props) {
                     <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px" alt=""/></td>
                     <td style={{width:'64%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
                         
-                        {row.enchant &&!row.enchant.reinforceSkill && row.enchant.status.map((status,i) => (
+                        {row.enchant &&!row.enchant.reinforceSkill&&!row.enchant.explain ? row.enchant.status.map((status,i) => (
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
-                        ))}
+                        )):row.itemType===null ? "":<span style={{paddingRight:'0.3rem' ,fontSize:'12px'}}>{Explain}</span>}
                         {
                             row.enchant&& row.enchant.reinforceSkill &&
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} >{row.enchant.reinforceSkill[0].skills[0].name+"+"+row.enchant.reinforceSkill[0].skills[0].value}</span>
@@ -271,7 +273,8 @@ function DFDetailPage(props) {
         
         </div>               
         <div align="center" style={{paddingTop:'1rem',paddingBottom:'0.5rem'}}>
-        {SkillBuff_a.length !==0 &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>장비</div>}
+        {SkillBuff_a &&<div align="left" style={{width:"40%",fontWeight:'bold',minWidth:'460px'}}>장비</div>}
+
         </div>
         <div>
         <table align="center" style={{border:'1px solid #dedede',width:"40%",minWidth:'460px'}}>

@@ -31,6 +31,7 @@ function DFDetailPage(props) {
     const [EndNumber, setEndNumber] = useState(0)
     const [StartNumber, setStartNumber] = useState(30)
     const [Fame,setFame] = useState("");
+    const [Talisman,setTalisman] = useState([])
     useEffect(() => {
         const api = `/df/servers/${serverId}/characters/${characterId}`
         setStartDate(moment(nowTime).subtract(StartNumber,'d').format('YYYY-MM-DD HH:mm'))
@@ -49,6 +50,8 @@ function DFDetailPage(props) {
         fetchDatas(endpoint7,7)
         const endpoint8 = `${api}/skill/buff/equip/creature?apikey=${DF_KEY}`
         fetchDatas(endpoint8,8)
+        const endpoint9 = `${api}/equip/talisman?apikey=${DF_KEY}`
+        fetchDatas(endpoint9,9)
     }, [])
     const fetchDatas = (endpoint,num) => {
         Axios.get(endpoint)
@@ -83,6 +86,9 @@ function DFDetailPage(props) {
                 setSkillBuff_b(response.skill.buff.avatar)
             }else if(num ===8&&response.skill.buff){
                 setSkillBuff_c(response.skill.buff.creature)
+            }else if(num ===9){
+                setTalisman(response.talismans)
+                console.log(response.talismans);
             }
             
         })
@@ -203,7 +209,7 @@ function DFDetailPage(props) {
                
                     <td style={{width:'6%'}}><span style={{position:'absolute', fontSize:'8px',zIndex:1,color:'white',paddingLeft:'2px'}}>{row.itemRarity}</span><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="48px" height="48px" alt=""/></td>
                     <td style={{width:'64%'}}><span style={row.itemRarity!=="신화"?{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}:{color:GradeOptions.find(grade => grade.value===row.itemRarity).label,background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{row.itemName}</span><br/>
-                        {row.enchant&&row.enchant.reinforceSkill ===null &&row.enchant.status.map((status,i) => (
+                        {row.enchant.status.map((status,i) => (
                             <span style={{paddingRight:'0.3rem' ,fontSize:'12px'}} key={i}>{status.name+"+"+status.value}</span>
                         ))}
                         {
@@ -319,6 +325,32 @@ function DFDetailPage(props) {
         </table>
         </div>
         </TabPane>
+        <TabPane tab="탈리스만" key="6" >
+        <div align="center" style={{paddingTop:'2rem',paddingBottom:'1rem'}}>
+        <Title level={3}>탈리스만</Title>
+        </div>
+     
+      
+        <table style={{marginRight:'auto',marginLeft:'auto' }}>
+        <tbody>
+        {Talisman && Talisman.map((row,index) => (  
+        <tr key={index} className="talisman"> 
+        <td>
+            <Title level={3} style={{color:"#FF00FF"}}>{row.talisman.itemName}</Title> <br/>
+            <Title level={4}>{row.talisman.runeTypes[0]+","+row.talisman.runeTypes[1]+","+row.talisman.runeTypes[2]}</Title> <br/>
+            <Title level={4}>{row.runes[0].itemName+","+row.runes[1].itemName+","+row.runes[2].itemName}</Title>
+        </td>
+        </tr>
+        
+        
+    )
+        )}
+        </tbody>
+        </table>
+        
+       
+    
+</TabPane>
         </Tabs>      
         </div>
     )

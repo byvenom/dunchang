@@ -73,12 +73,12 @@ function DFDetailPage(props) {
             }
             else if(num===4&&response.equipment){
               setEquipment(response.equipment)
-              console.log(response.equipment)
               if(response.equipment[3].enchant)setExplain(response.equipment[3].enchant.explain)
             }
             else if (num ===5){
                 if(response.avatar){
                 setAvatar(response.avatar)
+                console.log(response.avatar)
                 }
             }
             else if (num ===6 && response.skill.buff ){
@@ -249,10 +249,15 @@ function DFDetailPage(props) {
                     <span style={{fontSize:'20px',fontWeight:'bold'}}>{row.slotName.split(' ')[0]}</span>
                     </td>
                     <td style={{width:'7%'}}><img src={`https://img-api.neople.co.kr/df/items/${row.itemId}`} width="36px" height="36px" alt=""/></td> 
-                    <td style={{width:'84%'}}><span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
+                    <td style={{width:'64%'}}><span style={{color:GradeOptions.find(grade => grade.value===row.itemRarity).label}}>{row.itemName}</span>
                     {row.emblems && row.emblems.map((emblem,index) => (
                         <div key={index} style={{fontSize:'12px',color:GradeOptions.find(grade => grade.value===emblem.itemRarity).label}}>{emblem.itemName}</div> 
                     ))}
+                    </td>
+                    <td style={{width:'20%', minWidth:'210px'}}> <div style={{fontWeight:'bold'}}>
+                    {row.optionAbility}
+                    </div>
+                    
                     </td>
                 </tr>   
             ))}

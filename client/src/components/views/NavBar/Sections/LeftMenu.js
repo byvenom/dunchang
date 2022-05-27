@@ -36,6 +36,9 @@ function LeftMenu(props) {
     </Menu.Item>
     </SubMenu>
     <SubMenu title={<span><a href="/dunfa" style={{textDecoration:'inherit' , color:'inherit'}}>DUNCHANG</a></span>}>
+    <Menu.Item key="searchchar">
+    <a href="/dunfa">캐릭터검색</a>
+    </Menu.Item>
     <Menu.Item key="searchitem">
     <a href="/dunfa/itemsearch">아이템검색</a>
     </Menu.Item>

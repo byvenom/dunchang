@@ -266,7 +266,7 @@ function DFDetailPage(props) {
                
         </div>
         <div align="center" style={{paddingBottom:'0.5rem'}}>
-        {SkillBuff_i.name &&<div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'460px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_l ? SkillBuff_i.name +" LV."+SkillBuff_l.level: ""}</p></div>
+        {SkillBuff_i.name &&<div align="right" style={{width:'40%',background:'-webkit-linear-gradient(top, rgb(255, 180, 0), rgb(255, 0, 255))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',minWidth:'380px'}}><p style={{border:'5px solid transparent',borderImage:'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)',borderImageSlice:'1',width:'17%',fontSize:'16px',padding:'3px',minWidth:'130px'}}>{SkillBuff_l ? SkillBuff_i.name +" LV."+SkillBuff_l.level: ""}</p></div>
                     }
         <br/>
         

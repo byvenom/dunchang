@@ -26,11 +26,11 @@ function NavBar(props) {
   };
   
   return (
-    <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
+    <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' ,overflow:'hidden'}}>
       <div className="menu__logo">
         <a href="/LandingPage" style={der}><img src={logo} style={img} className="App-logo3"alt=""/>YeotTube</a>
       </div>
-      <div className="menu__container">
+      <div className="menu__container" >
         <div className="menu_left">
           <LeftMenu mode="horizontal" />
         </div>

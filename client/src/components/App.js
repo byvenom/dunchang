@@ -25,6 +25,7 @@ import CalendarPage from './views/CalendarPage/CalendarPage'
 import ChatPage from './views/ChatPage/ChatPage'
 import JusikPage from './views/JusikPage/JusikPage'
 import StartPage from './views/StratPage/StartPage'
+import ShortUrlPage from './views/ShortUrlPage/ShortUrlPage';
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -63,7 +64,8 @@ function App() {
           <Route exact path="/calendar" component={Auth(CalendarPage, null)} />
           {/* 주식 */}
           <Route exact path="/jusik" component={Auth( JusikPage, null)} />
-         
+          {/* NAVER API */}
+          <Route exact path="/naver/url" component={Auth( ShortUrlPage, null)} />
         </Switch>
         {/* 챗봇 클론 */}
         <ChatbotPage/>

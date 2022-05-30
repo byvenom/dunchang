@@ -10,7 +10,9 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const config = require("./config/key");
 const multer = require("multer");
-const fs = require("fs");
+
+
+
 // const mongoose = require("mongoose");
 // mongoose
 //   .connect(config.mongoURI, { useNewUrlParser: true })
@@ -45,6 +47,7 @@ app.use('/api/favorite', require('./routes/favorite'));
 app.use('/api/chart', require('./routes/chart'));
 app.use('/api/df', require('./routes/df'));
 app.use('/api/chat', require('./routes/chat'));
+app.use('/api/naver',require('./routes/naver'));
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

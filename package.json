@@ -44,6 +44,7 @@
     "opendart": "^1.0.2",
     "os": "^0.1.1",
     "react-redux": "^5.0.7",
+    "request": "^2.88.2",
     "saslprep": "^1.0.3",
     "socket.io": "^2.2.0",
     "supports-color": "^7.1.0",

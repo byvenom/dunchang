@@ -26,6 +26,7 @@ import ChatPage from './views/ChatPage/ChatPage'
 import JusikPage from './views/JusikPage/JusikPage'
 import StartPage from './views/StratPage/StartPage'
 import ShortUrlPage from './views/ShortUrlPage/ShortUrlPage';
+import NewsSearchPage from './views/NewsSearchPage/NewsSearchPage';
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -66,6 +67,8 @@ function App() {
           <Route exact path="/jusik" component={Auth( JusikPage, null)} />
           {/* NAVER API */}
           <Route exact path="/naver/url" component={Auth( ShortUrlPage, null)} />
+          <Route exact path="/naver/newsSearch" component={Auth( NewsSearchPage, null)} />
+          
         </Switch>
         {/* 챗봇 클론 */}
         <ChatbotPage/>

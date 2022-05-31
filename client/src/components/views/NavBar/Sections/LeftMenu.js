@@ -43,8 +43,13 @@ function LeftMenu(props) {
     <a href="/dunfa/itemsearch">아이템검색</a>
     </Menu.Item>
     </SubMenu>
-    <SubMenu title={<span><a href="/naver/url" style={{textDecoration:'inherit' , color:'inherit'}}>URL 단축</a></span>}>
- 
+    <SubMenu title={<span><a href="/naver/url" style={{textDecoration:'inherit' , color:'inherit'}}>유틸리티</a></span>}>
+    <Menu.Item key="searchURL">
+    <a href="/naver/url">URL단축</a>
+    </Menu.Item>
+    <Menu.Item key="searchNews">
+    <a href="/naver/newsSearch">뉴스검색</a>
+    </Menu.Item>
     </SubMenu>
     <SubMenu title={<span><a href="/chat" style={{textDecoration:'inherit' , color:'inherit'}}>실시간 채팅</a></span>}>
  

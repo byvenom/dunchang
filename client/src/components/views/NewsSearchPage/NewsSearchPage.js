@@ -44,8 +44,9 @@ function NewsSearchPage(props) {
 
     }
     const onKeyPress = (e) => {
-        e.preventDefault();
+        
         if(e.key === 'Enter'){
+            e.preventDefault();
             onSubmit();
         }
     }

@@ -63,7 +63,7 @@
   padding: 14px 24px !important;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .menu__mobile-button {
     display: inline-block !important;
   }
